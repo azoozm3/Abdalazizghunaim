@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdalaziz Ghunaim — Developer Portfolio</title>
+<meta name="description" content="Abdalaziz Ghunaim — Business Information Technology graduate and junior full-stack developer focused on web applications, databases, support, and business systems.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --bg:#101312;
+  --surface:#181D1B;
+  --surface-2:#202824;
+  --ink:#F4F0E8;
+  --ink-dim:#C4BDB0;
+  --muted:#8F9189;
+  --border:rgba(244,240,232,0.11);
+  --border-strong:rgba(244,240,232,0.22);
+  --accent:#D9A441;
+  --accent-strong:#F1C96A;
+  --accent-ink:#18110A;
+  --teal:#3C9F95;
+  --amber:#D9A441;
+  --slate:#88A4D8;
+  --grey:#9B9A91;
+  --danger:#D4715A;
+  --shadow:0 20px 50px -25px rgba(0,0,0,0.6);
+  --radius:2px;
+  --font-head:'Space Grotesk', 'IBM Plex Sans Arabic', sans-serif;
+  --font-body:'IBM Plex Sans', 'IBM Plex Sans Arabic', sans-serif;
+  --font-mono:'IBM Plex Mono', monospace;
+  --maxw:1180px;
+}
+html[data-theme="light"]{
+  --bg:#F7F3EA;
+  --surface:#FFFFFF;
+  --surface-2:#ECE5D8;
+  --ink:#171A18;
+  --ink-dim:#54514B;
+  --muted:#807D74;
+  --border:rgba(23,26,24,0.11);
+  --border-strong:rgba(23,26,24,0.22);
+  --accent:#A26B19;
+  --accent-strong:#7B4F10;
+  --accent-ink:#FFF8EA;
+  --shadow:0 20px 50px -30px rgba(20,30,28,0.35);
+}
+html[dir="rtl"] body{ font-family: var(--font-body); }
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  transition:background .25s ease, color .25s ease;
+}
+h1,h2,h3,h4{
+  font-family:var(--font-head);
+  font-weight:600;
+  line-height:1.15;
+  margin:0;
+  letter-spacing:0;
+}
+html[dir="rtl"] h1, html[dir="rtl"] h2, html[dir="rtl"] h3, html[dir="rtl"] h4{
+  font-family:var(--font-body); font-weight:700; letter-spacing:0;
+}
+p{margin:0;}
+a{color:inherit;}
+button{font-family:inherit;}
+.mono{font-family:var(--font-mono); letter-spacing:0.01em;}
+::selection{background:var(--accent); color:var(--accent-ink);}
+:focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+@media(max-width:640px){.wrap{padding:0 20px;}}
+
+/* ============ HEADER ============ */
+header.site{
+  position:sticky; top:0; z-index:40;
+  background:color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+}
+.nav-row{
+  display:flex; align-items:center; justify-content:space-between;
+  height:64px;
+}
+.brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--ink);}
+.brand-mark{
+  width:30px; height:30px; border:1.5px solid var(--accent);
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-mono); font-size:12px; color:var(--accent); font-weight:600;
+  flex:none;
+}
+.brand-name{font-family:var(--font-head); font-weight:600; font-size:15px;}
+.brand-role{display:block; font-size:11px; color:var(--ink-dim); font-family:var(--font-mono); margin-top:1px;}
+nav.main-nav{display:flex; gap:28px;}
+nav.main-nav a{
+  font-size:14px; text-decoration:none; color:var(--ink-dim);
+  padding:4px 0; border-bottom:1px solid transparent;
+}
+nav.main-nav a:hover{color:var(--ink); border-color:var(--border-strong);}
+.nav-controls{display:flex; align-items:center; gap:10px;}
+.ctrl-btn{
+  background:none; border:1px solid var(--border); color:var(--ink-dim);
+  font-size:12px; font-family:var(--font-mono); padding:7px 10px; cursor:pointer;
+  display:flex; align-items:center; gap:6px;
+}
+.ctrl-btn:hover{color:var(--ink); border-color:var(--border-strong);}
+.menu-toggle{display:none; background:none; border:1px solid var(--border); color:var(--ink); width:38px; height:38px; align-items:center; justify-content:center; cursor:pointer;}
+@media(max-width:820px){
+  nav.main-nav{position:fixed; inset:64px 0 0 0; background:var(--bg); flex-direction:column; padding:24px 28px; gap:2px; transform:translateY(-8px); opacity:0; pointer-events:none; transition:opacity .18s ease, transform .18s ease; border-top:1px solid var(--border);}
+  nav.main-nav.open{opacity:1; transform:none; pointer-events:auto;}
+  nav.main-nav a{font-size:20px; padding:14px 0; border-bottom:1px solid var(--border); color:var(--ink);}
+  .menu-toggle{display:flex;}
+}
+
+/* ============ HERO ============ */
+.hero{padding:82px 0 58px; position:relative; overflow:hidden;}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 0 55%,color-mix(in srgb,var(--accent) 13%,transparent) 55% 100%);pointer-events:none;}
+.hero-grid{position:relative;display:grid; grid-template-columns:minmax(0,1.02fr) minmax(320px,0.98fr); gap:58px; align-items:center;}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr; gap:38px;}}
+.hero-eyebrow{
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--font-mono); font-size:12px; color:var(--accent-strong);
+  border:1px solid var(--border); padding:5px 10px 5px 6px; margin-bottom:22px;
+}
+html[dir="rtl"] .hero-eyebrow{padding:5px 6px 5px 10px;}
+.hero-eyebrow .dot{width:6px; height:6px; border-radius:50%; background:var(--accent-strong); flex:none;}
+.hero h1{font-size:clamp(40px, 6.4vw, 76px); max-width:11ch;}
+@media(max-width:640px){.hero h1{font-size:40px;}}
+.hero .lead{margin-top:22px; font-size:18px; color:var(--ink-dim); max-width:56ch;}
+.hero-proof{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin-top:34px;background:var(--border);border:1px solid var(--border);max-width:720px;}
+.proof-item{background:color-mix(in srgb,var(--surface) 88%,transparent);padding:16px 18px;min-height:92px;}
+.proof-item strong{display:block;font-family:var(--font-head);font-size:20px;color:var(--ink);margin-bottom:5px;}
+.proof-item span{display:block;font-size:12px;color:var(--ink-dim);}
+@media(max-width:700px){.hero-proof{grid-template-columns:1fr}.proof-item{min-height:auto}}
+.hero-ctas{display:flex; gap:12px; margin-top:32px; flex-wrap:wrap;}
+.btn{
+  display:inline-flex; align-items:center; gap:8px; text-decoration:none; cursor:pointer;
+  font-size:14px; font-weight:500; padding:12px 20px; border:1px solid var(--border-strong);
+  background:none; color:var(--ink); transition:border-color .15s ease, background .15s ease;
+}
+.btn.primary{background:var(--accent); border-color:var(--accent); color:var(--accent-ink); font-weight:600;}
+.btn.primary:hover{background:var(--accent-strong); border-color:var(--accent-strong);}
+.btn:not(.primary):hover{border-color:var(--ink-dim);}
+.hero-scope{margin-top:34px; display:flex; gap:26px; flex-wrap:wrap;}
+.hero-scope div{font-family:var(--font-mono); font-size:12px; color:var(--muted);}
+.hero-scope strong{display:block; font-family:var(--font-head); font-size:20px; color:var(--ink); font-weight:600;}
+
+.systems-panel{position:relative;min-height:620px;border:1px solid var(--border);background:linear-gradient(180deg,color-mix(in srgb,var(--surface) 88%,var(--accent) 12%),var(--surface));overflow:hidden;box-shadow:var(--shadow);padding:34px;display:flex;flex-direction:column;justify-content:space-between;}
+.systems-panel::before{content:"";position:absolute;inset:20px;border:1px solid var(--border-strong);pointer-events:none;}
+.systems-panel h2{font-size:24px;max-width:12ch;}
+.system-map{position:relative;min-height:330px;margin:28px 0;}
+.system-node{position:absolute;border:1px solid var(--border-strong);background:color-mix(in srgb,var(--bg) 62%,transparent);padding:14px 16px;font-family:var(--font-mono);font-size:12px;color:var(--ink);min-width:128px;box-shadow:0 16px 36px -28px rgba(0,0,0,.85);}
+.system-node small{display:block;color:var(--muted);font-size:10px;margin-top:4px;}
+.system-node:nth-child(1){left:0;top:28px;}
+.system-node:nth-child(2){right:0;top:0;}
+.system-node:nth-child(3){left:50%;top:132px;transform:translateX(-50%);border-color:color-mix(in srgb,var(--accent) 70%,var(--border));}
+.system-node:nth-child(4){left:8%;bottom:0;}
+.system-node:nth-child(5){right:8%;bottom:28px;}
+.system-link{position:absolute;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:.72;transform-origin:left center;}
+.system-link.l1{left:112px;top:88px;width:210px;transform:rotate(18deg);}
+.system-link.l2{right:118px;top:78px;width:188px;transform:rotate(155deg);}
+.system-link.l3{left:142px;bottom:82px;width:190px;transform:rotate(-24deg);}
+.system-link.l4{right:142px;bottom:108px;width:180px;transform:rotate(205deg);}
+.systems-proof{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);}
+.systems-proof span{background:color-mix(in srgb,var(--surface) 88%,transparent);padding:14px;font-family:var(--font-mono);font-size:11px;color:var(--ink-dim);}
+@media(max-width:900px){.systems-panel{min-height:520px;max-width:520px}.system-map{min-height:300px}}
+@media(max-width:560px){.systems-panel{padding:26px}.system-node{min-width:112px;font-size:11px}.systems-proof{grid-template-columns:1fr}}
+
+/* ============ SECTION SHELL ============ */
+section{padding:72px 0;}
+.section-head{margin-bottom:36px; max-width:60ch;}
+.section-tag{font-family:var(--font-mono); font-size:12px; color:var(--accent-strong); margin-bottom:10px; display:block;}
+.section-head h2{font-size:28px;}
+.section-head p{margin-top:12px; color:var(--ink-dim); font-size:15px;}
+.section-divider{border:none; border-top:1px solid var(--border); margin:0;}
+
+/* ============ ABOUT ============ */
+.about-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px;}
+@media(max-width:820px){.about-grid{grid-template-columns:1fr;}}
+.about-copy p{color:var(--ink-dim); font-size:15px; margin-bottom:16px;}
+.about-copy p:last-child{margin-bottom:0;}
+.about-facts{display:flex; flex-direction:column; gap:0; border-top:1px solid var(--border);}
+.about-facts .fact{display:flex; justify-content:space-between; gap:16px; padding:14px 0; border-bottom:1px solid var(--border);}
+.about-facts .fact dt{font-family:var(--font-mono); font-size:12px; color:var(--muted); flex:none; width:38%;}
+.about-facts .fact dd{margin:0; font-size:14px; color:var(--ink);}
+
+/* ============ SKILLS ============ */
+.skills-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border);}
+@media(max-width:820px){.skills-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.skills-grid{grid-template-columns:1fr;}}
+.skill-cat{background:var(--surface); padding:22px;}
+.skill-cat h3{font-size:14px; font-family:var(--font-mono); color:var(--accent-strong); font-weight:600; margin-bottom:14px;}
+.skill-tags{display:flex; flex-wrap:wrap; gap:8px;}
+.skill-tag{
+  font-family:var(--font-mono); font-size:12px; color:var(--ink-dim);
+  border:1px solid var(--border); padding:5px 9px;
+}
+
+/* ============ WORK / FILTERS ============ */
+.filters{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:30px;}
+.filter-chip{
+  border:1px solid var(--border); background:none; color:var(--ink-dim);
+  font-family:var(--font-mono); font-size:12px; padding:8px 14px; cursor:pointer;
+}
+.filter-chip:hover{border-color:var(--border-strong); color:var(--ink);}
+.filter-chip.active{background:var(--ink); color:var(--bg); border-color:var(--ink);}
+html[data-theme="light"] .filter-chip.active{background:var(--ink); color:var(--bg);}
+
+.project-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--border); border:1px solid var(--border);}
+@media(max-width:820px){.project-grid{grid-template-columns:1fr;}}
+.project-card{
+  background:var(--surface); padding:26px; display:flex; flex-direction:column; gap:14px;
+  border-inline-start:3px solid var(--cat-color, var(--accent)); cursor:pointer;
+  transition:background .15s ease;
+}
+.project-card:hover{background:var(--surface-2);}
+.pc-top{display:flex; justify-content:space-between; align-items:flex-start; gap:12px;}
+.pc-top h3{font-size:19px;}
+.pc-status{font-family:var(--font-mono); font-size:10px; color:var(--muted); border:1px solid var(--border); padding:3px 7px; white-space:nowrap; flex:none;}
+.pc-desc{color:var(--ink-dim); font-size:14px; flex:1;}
+.pc-meta{font-family:var(--font-mono); font-size:11px; color:var(--cat-color, var(--accent));}
+.pc-tags{display:flex; flex-wrap:wrap; gap:6px;}
+.pc-tag{font-family:var(--font-mono); font-size:11px; color:var(--muted); border:1px solid var(--border); padding:3px 8px;}
+.pc-foot{display:flex; align-items:center; justify-content:space-between; margin-top:4px;}
+.pc-view{font-size:13px; font-weight:500; color:var(--ink); display:flex; align-items:center; gap:6px;}
+.pc-view svg{width:13px; height:13px;}
+html[dir="rtl"] .pc-view svg{transform:scaleX(-1);}
+
+/* ============ MODAL / CASE STUDY ============ */
+.modal-overlay{
+  position:fixed; inset:0; background:rgba(4,10,9,0.6); backdrop-filter:blur(2px);
+  display:none; z-index:100; align-items:flex-start; justify-content:center; padding:0;
+  overflow-y:auto;
+}
+.modal-overlay.open{display:flex;}
+.modal-panel{
+  background:var(--bg); width:100%; max-width:860px; min-height:100vh;
+  border-inline-start:1px solid var(--border);
+  animation:slideIn .22s ease;
+}
+@keyframes slideIn{from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:none;}}
+.modal-head{
+  position:sticky; top:0; background:color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--border); padding:18px 32px; display:flex; justify-content:space-between; align-items:center; z-index:2;
+}
+.modal-head .mh-cat{font-family:var(--font-mono); font-size:11px; color:var(--cat-color,var(--accent));}
+.modal-close{background:none; border:1px solid var(--border); color:var(--ink); width:34px; height:34px; cursor:pointer; display:flex; align-items:center; justify-content:center;}
+.modal-close:hover{border-color:var(--border-strong);}
+.modal-body{padding:36px 32px 80px;}
+.modal-body h2{font-size:30px; margin-bottom:8px;}
+.modal-sub{color:var(--ink-dim); font-size:15px; margin-bottom:28px;}
+.ms-block{margin-bottom:34px;}
+.ms-block h4{font-family:var(--font-mono); font-size:12px; color:var(--accent-strong); text-transform:none; margin-bottom:12px; display:flex; align-items:center; gap:8px;}
+.ms-block h4::after{content:''; flex:1; height:1px; background:var(--border);}
+.ms-block p{color:var(--ink-dim); font-size:14.5px; margin-bottom:10px;}
+.ms-block p:last-child{margin-bottom:0;}
+.ms-list{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:9px;}
+.ms-list li{color:var(--ink-dim); font-size:14.5px; padding-inline-start:16px; position:relative;}
+.ms-list li::before{content:'—'; position:absolute; inset-inline-start:0; color:var(--muted);}
+.stack-groups{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:20px;}
+.stack-group h5{font-family:var(--font-mono); font-size:11px; color:var(--muted); margin-bottom:8px; font-weight:500;}
+.stack-chips{display:flex; flex-wrap:wrap; gap:6px;}
+.ar-block{background:var(--surface); border:1px solid var(--border); padding:20px; border-inline-start:3px solid var(--amber);}
+.ar-block h4{color:var(--amber);}
+.ar-block p{direction:rtl; text-align:right; font-family:'IBM Plex Sans Arabic', sans-serif; color:var(--ink); font-size:15px; line-height:1.9;}
+.status-line{display:flex; gap:18px; flex-wrap:wrap; font-family:var(--font-mono); font-size:12px; color:var(--muted);}
+.status-line b{color:var(--ink); font-weight:500;}
+.demo-box{border:1px solid var(--border); background:var(--surface); padding:20px;}
+.demo-note{font-family:var(--font-mono); font-size:10.5px; color:var(--muted); margin-top:12px;}
+.code-box{border:1px solid var(--border); background:#0A1614; overflow:hidden;}
+html[data-theme="light"] .code-box{background:#12211F;}
+.code-box-head{display:flex; justify-content:space-between; align-items:center; padding:10px 16px; border-bottom:1px solid var(--border); background:rgba(255,255,255,0.03);}
+.code-box-head span{font-family:var(--font-mono); font-size:11.5px; color:#8FB6AD;}
+.code-copy{background:none; border:1px solid rgba(255,255,255,0.15); color:#C9D8D4; font-family:var(--font-mono); font-size:10.5px; padding:4px 9px; cursor:pointer;}
+.code-copy:hover{border-color:rgba(255,255,255,0.35);}
+.code-box pre{margin:0; padding:18px 20px; overflow-x:auto; max-height:420px; overflow-y:auto;}
+.code-box code{font-family:var(--font-mono); font-size:12.5px; line-height:1.7; color:#D6E6E1; white-space:pre;}
+
+/* ============ CREDENTIALS ============ */
+.credential-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);}
+.credential-card{background:var(--surface);padding:22px;min-height:150px;}
+.credential-card h3{font-family:var(--font-head);font-size:16px;margin-bottom:10px;color:var(--ink);}
+.credential-card p{font-size:13.5px;color:var(--ink-dim);}
+.credential-card .mono{display:block;margin-bottom:12px;color:var(--accent-strong);font-size:11px;}
+@media(max-width:900px){.credential-strip{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.credential-strip{grid-template-columns:1fr;}}
+
+/* ============ CONTACT ============ */
+.contact-panel{border:1px solid var(--border); background:var(--surface); padding:44px; display:grid; grid-template-columns:1.2fr 1fr; gap:40px;}
+@media(max-width:820px){.contact-panel{grid-template-columns:1fr; padding:30px;}}
+.contact-panel h2{font-size:26px; margin-bottom:14px;}
+.contact-panel .lead{color:var(--ink-dim); font-size:15px; max-width:44ch;}
+.contact-list{display:flex; flex-direction:column; gap:0;}
+.contact-item{display:flex; justify-content:space-between; align-items:center; padding:14px 0; border-bottom:1px solid var(--border); text-decoration:none; color:var(--ink);}
+.contact-item:last-child{border-bottom:none;}
+.contact-item span:first-child{font-family:var(--font-mono); font-size:12px; color:var(--muted);}
+.contact-item span:last-child{font-size:14px;}
+
+/* ============ FOOTER ============ */
+footer.site{border-top:1px solid var(--border); padding:26px 0;}
+.footer-row{display:flex; justify-content:space-between; align-items:center; font-family:var(--font-mono); font-size:11.5px; color:var(--muted); flex-wrap:wrap; gap:10px;}
+
+.empty-state{padding:60px 20px; text-align:center; color:var(--muted); font-family:var(--font-mono); font-size:13px; border:1px dashed var(--border);}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav-row">
+    <a href="#home" class="brand">
+      <span class="brand-mark">AG</span>
+      <span>
+        <span class="brand-name">Abdalaziz Ghunaim</span>
+        <span class="brand-role" data-i18n="nav.role">Full-stack Developer</span>
+      </span>
+    </a>
+    <nav class="main-nav" id="mainNav">
+      <a href="#about" data-i18n="nav.about">About</a>
+      <a href="#skills" data-i18n="nav.skills">Skills</a>
+      <a href="#work" data-i18n="nav.work">Work</a>
+      <a href="#credentials" data-i18n="nav.credentials">Credentials</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+    </nav>
+    <div class="nav-controls">
+      <button class="ctrl-btn" id="langToggle">EN / AR</button>
+      <button class="ctrl-btn" id="themeToggle"><span id="themeIcon">☾</span><span id="themeLabel">Dark</span></button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="hero-eyebrow"><span class="dot"></span><span data-i18n="hero.eyebrow">Amman, Jordan - open to junior roles</span></span>
+        <h1 data-i18n="hero.h1">Junior full-stack developer with a business-systems mind.</h1>
+        <p class="lead" data-i18n="hero.lead">Business Information Technology graduate from the University of Jordan. I build practical web applications, database-backed workflows, and clear user experiences across healthcare, student support, e-learning, and commerce projects.</p>
+        <div class="hero-ctas">
+          <a href="#work" class="btn primary" data-i18n="hero.cta1">View case studies</a>
+          <a href="#credentials" class="btn" data-i18n="hero.cta2">Credentials</a>
+          <a href="#contact" class="btn" data-i18n="hero.cta3">Contact</a>
+        </div>
+        <div class="hero-proof">
+          <div class="proof-item"><strong>5 roles</strong><span data-i18n="hero.proof1">designed and built in Mu'en: patient, doctor, nurse, volunteer, admin</span></div>
+          <div class="proof-item"><strong>100+</strong><span data-i18n="hero.proof2">manual test cases documented across devices and workflows</span></div>
+          <div class="proof-item"><strong>AWS + Cisco</strong><span data-i18n="hero.proof3">Cloud Foundations, Data Engineering, and Linux training</span></div>
+        </div>
+      </div>
+      <div class="systems-panel" aria-label="Portfolio systems overview">
+        <div>
+          <span class="hero-eyebrow"><span class="dot"></span><span>REACT / NODE / SQL / SUPPORT</span></span>
+          <h2>Systems thinking, shown through real projects.</h2>
+        </div>
+        <div class="system-map" aria-hidden="true">
+          <span class="system-link l1"></span><span class="system-link l2"></span><span class="system-link l3"></span><span class="system-link l4"></span>
+          <div class="system-node">Patient UX<small>service flows</small></div>
+          <div class="system-node">Admin Ops<small>permissions</small></div>
+          <div class="system-node">API + Data<small>MongoDB / SQL</small></div>
+          <div class="system-node">Testing<small>100+ checks</small></div>
+          <div class="system-node">Support<small>docs + fixes</small></div>
+        </div>
+        <div class="systems-proof">
+          <span>Graduation project depth</span>
+          <span>Business Information Technology</span>
+          <span>AWS Academy training</span>
+          <span>Bilingual EN/AR portfolio</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-tag" data-i18n="about.tag">01 / About</span>
+        <h2 data-i18n="about.h2">Background</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-copy">
+          <p data-i18n="about.p1">I recently graduated with a Business Information Technology degree from the University of Jordan, which sits between software development and how businesses actually run — requirements, workflows, and process thinking, alongside code.</p>
+          <p data-i18n="about.p2">Most of what I know, I learned by building: a full-stack healthcare platform with five different user roles, a student portal with a course-planning tool, an interactive AI e-learning site in PHP, and smaller React exercises to sharpen specific skills like state management and routing.</p>
+          <p data-i18n="about.p3">I don't have professional work experience yet, so I'd rather show real, working projects than list buzzwords I haven't used. I'm currently looking for junior roles across software development, business analysis, ERP implementation, and customer-facing support — anywhere that combination of technical and business thinking is useful.</p>
+        </div>
+        <dl class="about-facts">
+          <div class="fact"><dt data-i18n="about.f1k">Education</dt><dd data-i18n="about.f1v">B.Sc. Business Information Technology — University of Jordan, 2026</dd></div>
+          <div class="fact"><dt data-i18n="about.f2k">Based in</dt><dd data-i18n="about.f2v">Amman, Jordan</dd></div>
+          <div class="fact"><dt data-i18n="about.f3k">Core stack</dt><dd data-i18n="about.f3v">React, Node.js/Express, MongoDB — plus PHP/MySQL</dd></div>
+          <div class="fact"><dt data-i18n="about.f4k">Looking for</dt><dd data-i18n="about.f4v">Junior dev, business analyst, ERP implementation, or support roles</dd></div>
+          <div class="fact"><dt data-i18n="about.f5k">Status</dt><dd data-i18n="about.f5v">Open to work — no prior professional employment</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-tag" data-i18n="skills.tag">02 / Skills</span>
+        <h2 data-i18n="skills.h2">What I actually used</h2>
+        <p data-i18n="skills.p">Derived from the projects below — nothing listed here that isn't backed by real code.</p>
+      </div>
+      <div class="skills-grid" id="skillsGrid"></div>
+    </div>
+  </section>
+
+
+  <hr class="section-divider">
+
+  <!-- CREDENTIALS -->
+  <section id="credentials">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-tag" data-i18n="credentials.tag">03 / Credentials</span>
+        <h2 data-i18n="credentials.h2">Training that supports the work</h2>
+        <p data-i18n="credentials.p">Pulled from the CV files and certificate archive: cloud, data, Linux, React, and the business-technology degree behind the projects.</p>
+      </div>
+      <div class="credential-strip">
+        <article class="credential-card"><span class="mono">AWS Academy</span><h3 data-i18n="credentials.c1h">Cloud Foundations</h3><p data-i18n="credentials.c1p">20-hour AWS Academy graduate certificate, 2026.</p></article>
+        <article class="credential-card"><span class="mono">AWS Academy</span><h3 data-i18n="credentials.c2h">Data Engineering</h3><p data-i18n="credentials.c2p">40-hour AWS Academy graduate certificate focused on data workflows, 2026.</p></article>
+        <article class="credential-card"><span class="mono">Cisco NetAcad</span><h3 data-i18n="credentials.c3h">Linux Unhatched</h3><p data-i18n="credentials.c3p">Linux fundamentals certificate, with CCNA self-study in progress.</p></article>
+        <article class="credential-card"><span class="mono">Udemy</span><h3 data-i18n="credentials.c4h">React 18/19</h3><p data-i18n="credentials.c4p">13-hour React course supporting the frontend projects shown below.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-tag" data-i18n="work.tag">04 / Work</span>
+        <h2 data-i18n="work.h2">Projects</h2>
+        <p data-i18n="work.p">Seven projects, ranging from a full-stack graduation project to small focused React exercises. Click any card for the full case study.</p>
+      </div>
+      <div class="project-grid" id="projectGrid"></div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-panel">
+        <div>
+          <h2 data-i18n="contact.h2">Let's talk</h2>
+          <p class="lead" data-i18n="contact.p">Open to junior developer, business analyst, ERP, and customer support roles in Jordan or remote. Reach out directly — I reply to everything.</p>
+        </div>
+        <div class="contact-list">
+          <a class="contact-item" href="mailto:abdalazizghunaim@gmail.com"><span data-i18n="contact.email">Email</span><span>abdalazizghunaim@gmail.com</span></a>
+          <a class="contact-item" href="tel:+962781788741"><span data-i18n="contact.phone">Phone</span><span>+962 78 178 8741</span></a>
+          <a class="contact-item" href="https://linkedin.com/in/abdalazizghunaim" target="_blank" rel="noopener"><span>LinkedIn</span><span>/in/abdalazizghunaim</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap footer-row">
+    <span data-i18n="footer.left">© 2026 Abdalaziz Ghunaim — built with vanilla HTML, CSS &amp; JS.</span>
+    <span data-i18n="footer.right">No fake stats. No fake clients. Just what's in the repos.</span>
+  </div>
+</footer>
+
+<!-- CASE STUDY MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-panel">
+    <div class="modal-head">
+      <span class="mono mh-cat" id="modalCat"></span>
+      <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   I18N — interface strings only. Project content lives in
+   the PROJECTS array below (each field has an _ar variant).
+   ========================================================= */
+const I18N = {
+  en: {
+    "nav.role":"Junior Full-stack Developer",
+    "nav.about":"About","nav.skills":"Skills","nav.work":"Work","nav.credentials":"Credentials","nav.contact":"Contact",
+    "hero.eyebrow":"Amman, Jordan - open to junior roles",
+    "hero.h1":"Junior full-stack developer with a business-systems mind.",
+    "hero.lead":"Business Information Technology graduate from the University of Jordan. I build practical web applications, database-backed workflows, and clear user experiences across healthcare, student support, e-learning, and commerce projects.",
+    "hero.cta1":"View case studies","hero.cta2":"Credentials","hero.cta3":"Contact",
+    "hero.stat1":"projects built","hero.stat2":"core stack","hero.stat3":"user roles in one platform",
+    "hero.panel.label":"system.status","hero.panel.status":"actively building",
+    "hero.panel.left":"EMERGENCY → CONSULT → CARE","hero.panel.right":"MU'EN PLATFORM",
+    "about.tag":"01 / About","about.h2":"Background",
+    "about.p1":"I recently graduated with a Business Information Technology degree from the University of Jordan, which sits between software development and how businesses actually run — requirements, workflows, and process thinking, alongside code.",
+    "about.p2":"Most of what I know, I learned by building: a full-stack healthcare platform with five different user roles, a student portal with a course-planning tool, an interactive AI e-learning site in PHP, and smaller React exercises to sharpen specific skills like state management and routing.",
+    "about.p3":"I don't have professional work experience yet, so I'd rather show real, working projects than list buzzwords I haven't used. I'm currently looking for junior roles across software development, business analysis, ERP implementation, and customer-facing support — anywhere that combination of technical and business thinking is useful.",
+    "about.f1k":"Education","about.f1v":"B.Sc. Business Information Technology — University of Jordan, 2026",
+    "about.f2k":"Based in","about.f2v":"Amman, Jordan",
+    "about.f3k":"Core stack","about.f3v":"React, Node.js/Express, MongoDB — plus PHP/MySQL",
+    "about.f4k":"Looking for","about.f4v":"Junior software developer, SQL, business analyst, ERP, or IT support roles",
+    "about.f5k":"Status","about.f5v":"Open to work — no prior professional employment",
+    "skills.tag":"02 / Skills","skills.h2":"What I actually used",
+    "skills.p":"A recruiter-friendly map of what is backed by projects, CVs, and certificates — separated by how it would show up on the job.",
+    "work.tag":"04 / Work","work.h2":"Projects",
+    "work.p":"A curated set of case studies. The major systems are first; smaller exercises are grouped as training so the portfolio reads like a professional body of work, not a file dump.",
+    "contact.h2":"Let's talk",
+    "contact.p":"Open to junior software development, SQL/database, business analyst, ERP implementation, IT support, and technical support roles in Jordan or remote.",
+    "contact.email":"Email","contact.phone":"Phone",
+
+    "hero.proof1":"designed and built in Mu'en: patient, doctor, nurse, volunteer, admin",
+    "hero.proof2":"manual test cases documented across devices and workflows",
+    "hero.proof3":"Cloud Foundations, Data Engineering, and Linux training",
+    "hero.photo.label":"Portfolio reviewed for recruiter clarity",
+    "credentials.tag":"03 / Credentials","credentials.h2":"Training that supports the work",
+    "credentials.p":"Pulled from the CV files and certificate archive: cloud, data, Linux, React, and the business-technology degree behind the projects.",
+    "credentials.c1h":"Cloud Foundations","credentials.c1p":"20-hour AWS Academy graduate certificate, 2026.",
+    "credentials.c2h":"Data Engineering","credentials.c2p":"40-hour AWS Academy graduate certificate focused on data workflows, 2026.",
+    "credentials.c3h":"Linux Unhatched","credentials.c3p":"Linux fundamentals certificate, with CCNA self-study in progress.",
+    "credentials.c4h":"React 18/19","credentials.c4p":"13-hour React course supporting the frontend projects shown below.",
+    "footer.left":"© 2026 Abdalaziz Ghunaim — built with vanilla HTML, CSS & JS.",
+    "footer.right":"Built around verified projects, CV details, and certificates.",
+    "filter.all":"All","viewcase":"View case study","close":"Close",
+    "sec.overview":"Overview","sec.problem":"The problem","sec.solution":"The solution","sec.mywork":"My work",
+    "sec.features":"Main features","sec.stack":"Technology stack","sec.highlights":"Technical highlights",
+    "sec.preview":"Interactive preview","sec.arabic":"بالعربي — Simple Arabic summary","sec.status":"Status",
+    "status.label":"Status","type.label":"Type","role.label":"My role","sec.code":"Real code — landing page","copy":"Copy","copied":"Copied"
+  },
+  ar: {
+    "nav.role":"مطوّر ويب متكامل",
+    "nav.about":"نبذة عني","nav.skills":"المهارات","nav.work":"الأعمال","nav.credentials":"الشهادات","nav.contact":"تواصل",
+    "hero.eyebrow":"عمّان، الأردن - متاح لوظائف مبتدئة",
+    "hero.h1":"مطوّر ويب مبتدئ بعقلية أنظمة الأعمال.",
+    "hero.lead":"خريج تكنولوجيا معلومات أعمال من الجامعة الأردنية. أبني تطبيقات ويب عملية، وتدفقات عمل مرتبطة بقواعد البيانات، وتجارب مستخدم واضحة في مشاريع صحية وطلابية وتعليمية وتجارية.",
+    "hero.cta1":"شاهد دراسات الحالة","hero.cta2":"الشهادات","hero.cta3":"تواصل معي",
+    "hero.stat1":"مشاريع منجزة","hero.stat2":"التقنية الأساسية","hero.stat3":"أدوار مستخدمين في منصة واحدة",
+    "hero.panel.label":"حالة النظام","hero.panel.status":"قيد التطوير الفعلي",
+    "hero.panel.left":"طوارئ ← استشارة ← رعاية","hero.panel.right":"منصّة معين",
+    "about.tag":"٠١ / نبذة عني","about.h2":"خلفيتي",
+    "about.p1":"تخرجت مؤخرًا بدرجة بكالوريوس في تكنولوجيا معلومات الأعمال من الجامعة الأردنية، وهو تخصص يجمع بين تطوير البرمجيات وفهم كيفية عمل الأعمال فعليًا — متطلبات، سير عمل، وتفكير في العمليات، إلى جانب البرمجة.",
+    "about.p2":"معظم ما أعرفه تعلّمته من خلال البناء الفعلي: منصة صحية متكاملة بخمسة أدوار مستخدمين مختلفة، بوابة طلابية فيها أداة لتخطيط المواد، موقع تعليمي تفاعلي عن الذكاء الاصطناعي بلغة PHP، ومشاريع React أصغر لتقوية مهارات محددة مثل إدارة الحالة والتوجيه.",
+    "about.p3":"ليس لدي خبرة عمل مهنية بعد، لذلك أفضّل أن أعرض مشاريع حقيقية وشغالة بدل سرد مصطلحات لم أستخدمها فعليًا. أبحث حاليًا عن وظائف مبتدئة في تطوير البرمجيات، تحليل الأعمال، تطبيق أنظمة ERP، أو الدعم الفني.",
+    "about.f1k":"التعليم","about.f1v":"بكالوريوس تكنولوجيا معلومات أعمال — الجامعة الأردنية، 2026",
+    "about.f2k":"المكان","about.f2v":"عمّان، الأردن",
+    "about.f3k":"التقنيات الأساسية","about.f3v":"React، Node.js/Express، MongoDB — بالإضافة إلى PHP/MySQL",
+    "about.f4k":"أبحث عن","about.f4v":"وظيفة مطوّر مبتدئ، محلل أعمال، تطبيق ERP، أو دعم فني",
+    "about.f5k":"الحالة","about.f5v":"متاح للعمل — بدون خبرة عمل مهنية سابقة",
+    "skills.tag":"٠٢ / المهارات","skills.h2":"ما استخدمته فعلاً",
+    "skills.p":"مستخلصة من المشاريع بالأسفل — لا شيء هنا غير مدعوم بكود حقيقي.",
+    "work.tag":"٠٤ / الأعمال","work.h2":"المشاريع",
+    "work.p":"مجموعة مختارة من دراسات الحالة. الأنظمة الأقوى أولًا، والتمارين الصغيرة مجمعة كتدريب حتى يظهر الملف كعمل احترافي وليس قائمة ملفات.",
+    "contact.h2":"لنتحدث",
+    "contact.p":"متاح لوظائف مطوّر مبتدئ، محلل أعمال، ERP، أو دعم عملاء في الأردن أو عن بعد. تواصل معي مباشرة — أرد على الجميع.",
+    "contact.email":"البريد الإلكتروني","contact.phone":"الهاتف",
+
+    "hero.proof1":"تم تصميمها وبناؤها في معين: مريض، طبيب، ممرضة، متطوع، مدير",
+    "hero.proof2":"حالة اختبار يدوية موثقة عبر الأجهزة وتدفقات العمل",
+    "hero.proof3":"تدريب في أساسيات السحابة وهندسة البيانات ولينكس",
+    "hero.photo.label":"ملف أعمال منظم لوضوح مسؤولي التوظيف",
+    "credentials.tag":"٠٣ / الشهادات","credentials.h2":"تدريب يدعم العمل",
+    "credentials.p":"مستخلصة من ملفات السيرة وأرشيف الشهادات: السحابة، البيانات، لينكس، React، وخلفية تكنولوجيا معلومات الأعمال.",
+    "credentials.c1h":"أساسيات السحابة","credentials.c1p":"شهادة AWS Academy مدتها ٢٠ ساعة، ٢٠٢٦.",
+    "credentials.c2h":"هندسة البيانات","credentials.c2p":"شهادة AWS Academy مدتها ٤٠ ساعة تركز على تدفقات البيانات، ٢٠٢٦.",
+    "credentials.c3h":"Linux Unhatched","credentials.c3p":"شهادة أساسيات لينكس، مع دراسة CCNA ذاتيًا قيد التقدم.",
+    "credentials.c4h":"React 18/19","credentials.c4p":"دورة React مدتها ١٣ ساعة تدعم مشاريع الواجهة المعروضة أدناه.",
+    "footer.left":"© 2026 عبدالعزيز غنيم — مبني بلغات HTML وCSS وJavaScript فقط.",
+    "footer.right":"لا إحصائيات وهمية. لا عملاء وهميون. فقط ما هو موجود فعلاً في المشاريع.",
+    "filter.all":"الكل","viewcase":"عرض دراسة الحالة","close":"إغلاق",
+    "sec.overview":"نظرة عامة","sec.problem":"المشكلة","sec.solution":"الحل","sec.mywork":"عملي في المشروع",
+    "sec.features":"الميزات الرئيسية","sec.stack":"التقنيات المستخدمة","sec.highlights":"أبرز الجوانب التقنية",
+    "sec.preview":"معاينة تفاعلية","sec.arabic":"بالعربي — شرح مبسّط","sec.status":"الحالة",
+    "status.label":"الحالة","type.label":"النوع","role.label":"دوري في المشروع","sec.code":"كود حقيقي — صفحة الهبوط","copy":"نسخ","copied":"تم النسخ"
+  }
+};
+const FILTERS = [
+  {key:"all", label:{en:"All", ar:"الكل"}},
+  {key:"fullstack", label:{en:"Full Stack", ar:"متكامل"}},
+  {key:"frontend", label:{en:"Frontend", ar:"واجهة أمامية"}},
+  {key:"react", label:{en:"React", ar:"React"}},
+  {key:"academic", label:{en:"Academic", ar:"أكاديمي"}},
+  {key:"training", label:{en:"Training", ar:"تدريبي"}}
+];
+
+/* =========================================================
+   PROJECT DATA — one object per project. To add a future
+   project, append a new object to this array; nothing else
+   in the app needs to change.
+   ========================================================= */
+const PROJECTS = [
+{
+  id:"muen",
+  slug:"muen",
+  filters:["fullstack","academic"],
+  category:"healthcare",
+  catColor:"var(--accent)",
+  title:"Mu'en",
+  title_ar:"معين",
+  oneLiner:{en:"A five-role medical support platform — emergency, doctors, nurses, volunteers and admin in one system.", ar:"منصة صحية متكاملة بخمسة أدوار — طوارئ، أطباء، ممرضات، متطوعون وإدارة في نظام واحد."},
+  type:{en:"Full-stack web app (MERN-style)", ar:"تطبيق ويب متكامل (MERN)"},
+  status:{en:"Graduation project — functional full-stack prototype, not deployed to production", ar:"مشروع تخرج — نموذج متكامل وشغال، غير منشور في بيئة إنتاج"},
+  overview:{en:"Mu'en is a full-stack medical support platform built as my graduation project. It gives five different kinds of users — patients, doctors, nurses, volunteers and admins — their own dashboards and flows inside one shared system, instead of scattering emergency contact, appointment booking and home-visit requests across separate tools.", ar:"معين منصة دعم طبي متكاملة بنيتها كمشروع تخرج. تمنح خمسة أنواع من المستخدمين — المريض، الطبيب، الممرضة، المتطوع والمدير — لوحة تحكم وتدفق عمل خاص بكل منهم، ضمن نظام واحد بدل تفريق التواصل الطارئ وحجز المواعيد وطلبات الزيارة المنزلية على أدوات منفصلة."},
+  problem:{en:"A patient who needs help usually has to juggle several disconnected channels: a phone call for an emergency, a separate app or clinic visit to book a doctor, another contact for a home-visit nurse, and no easy way to reach a volunteer for lighter support. There's no single place that understands who the patient is and what they already asked for.", ar:"المريض اللي محتاج مساعدة غالبًا لازم يستخدم عدة قنوات منفصلة: اتصال هاتفي للطوارئ، تطبيق أو زيارة عيادة لحجز طبيب، جهة تواصل ثانية لطلب ممرضة لزيارة منزلية، ومافي طريقة سهلة للوصول لمتطوع لمساعدة أخف. ما في مكان واحد يعرف مين المريض وشو طلب سابقًا."},
+  solution:{en:"One account system with role-based dashboards for Patient, Doctor, Nurse, Volunteer and Admin. A patient can raise an emergency request with live location, book a paid or free doctor consultation (in person or via Zoom), request a nurse home visit, or request volunteer help — all tracked through status stages, with ratings afterward and an admin layer managing users and the platform underneath.", ar:"نظام حسابات واحد بلوحات تحكم مخصصة لكل دور: مريض، طبيب، ممرضة، متطوع ومدير. المريض يقدر يرفع طلب طوارئ مع موقعه المباشر، يحجز استشارة طبيب مدفوعة أو مجانية (حضوريًا أو عبر Zoom)، يطلب زيارة ممرضة منزلية، أو يطلب مساعدة متطوع — وكل هذا يتتبع عبر مراحل حالة، مع تقييم بعد الانتهاء، وطبقة إدارية تدير المستخدمين والمنصة."},
+  myWork:{en:"I built both the client and server. That included the role-based routing and dashboards for all five roles, the full emergency-request subsystem (schemas, handlers, status transitions and review logic), the doctor live-location feature on the map, and wiring up PayPal for payments and Zoom for video consultations. On the backend I set up the MongoDB/Mongoose data layer, the session-based auth with bcrypt password hashing, and the custom production build script.", ar:"اشتغلت على الواجهة الأمامية والخلفية سوا. هذا شمل التوجيه ولوحات التحكم لكل الأدوار الخمسة، نظام طلبات الطوارئ بالكامل (المخططات، المعالجات، انتقالات الحالة ومنطق التقييم)، ميزة تتبع موقع الطبيب المباشر على الخريطة، وربط الدفع عبر PayPal والاستشارات المرئية عبر Zoom. على الخلفية، جهّزت طبقة البيانات بـ MongoDB/Mongoose، ونظام تسجيل الدخول القائم على الجلسات (session) مع تشفير كلمات المرور، وسكربت البناء المخصص للإنتاج."},
+  features:{en:[
+    "Emergency request flow with live location tracking and doctor-side location badge",
+    "Doctor appointments — in person or via Zoom video consultation",
+    "Nurse home-visit requests and volunteer request matching",
+    "PayPal payments for paid services, with a mock mode when no credentials are configured",
+    "Ratings and reviews for doctors, nurses and volunteers",
+    "Medicine reminders, personal health record, and a nearby-hospitals finder",
+    "In-app chatbot and a services directory",
+    "Admin dashboard for user and platform management"
+  ], ar:[
+    "تدفق طلب طوارئ مع تتبع موقع مباشر وشارة موقع للطبيب",
+    "حجز مواعيد طبيب — حضوريًا أو عبر استشارة فيديو Zoom",
+    "طلبات زيارة ممرضة منزلية ومطابقة طلبات المتطوعين",
+    "دفع عبر PayPal للخدمات المدفوعة، مع وضع تجريبي عند غياب بيانات الدفع",
+    "تقييمات ومراجعات للأطباء والممرضات والمتطوعين",
+    "تذكير بالأدوية، سجل صحي شخصي، وأداة لإيجاد أقرب مستشفى",
+    "روبوت محادثة داخل التطبيق ودليل خدمات",
+    "لوحة تحكم إدارية لإدارة المستخدمين والمنصة"
+  ]},
+  stack:{
+    Frontend:["React","Vite","Wouter","TanStack Query","Tailwind CSS","Radix UI","React Hook Form","Zod"],
+    Backend:["Node.js","Express 5","express-session","connect-mongo","bcrypt"],
+    Database:["MongoDB","Mongoose"],
+    Integrations:["PayPal SDK","Zoom SDK"]
+  },
+  highlights:{en:[
+    "Feature-folder architecture on both client and server — code is grouped by domain (emergency, appointments, nurse-requests…) rather than by file type",
+    "Session-based authentication with a MongoDB-backed session store and bcrypt password hashing, plus CSRF token handling on auth routes",
+    "A mock-mode fallback for PayPal so the app still runs end-to-end locally without real payment credentials",
+    "The emergency-request subsystem is split into dedicated handlers, schemas, status-helpers and review-helpers modules rather than one large route file",
+    "A custom build script (script/build.js) bundles the server into a single dist/index.cjs for deployment"
+  ], ar:[
+    "بنية مقسّمة حسب الميزة (feature-folder) في الواجهة والخلفية معًا — الكود مجمّع حسب المجال (طوارئ، مواعيد، طلبات ممرضات...) وليس حسب نوع الملف",
+    "تسجيل دخول قائم على الجلسات (session) مع تخزين الجلسات على MongoDB وتشفير كلمات المرور، مع حماية CSRF على مسارات تسجيل الدخول",
+    "وضع تجريبي (mock mode) لـ PayPal يخلي التطبيق يشتغل محليًا بالكامل بدون بيانات دفع حقيقية",
+    "نظام طلبات الطوارئ مقسوم لوحدات منفصلة للمعالجات، المخططات، حالة الطلب ومنطق التقييم بدل ملف مسارات واحد كبير",
+    "سكربت بناء مخصص يجمع الخادم بالكامل في ملف واحد جاهز للنشر"
+  ]},
+  demo:"muen",
+  codeFile:"client/src/features/landing/components/LandingHero.jsx",
+  code:"export default function LandingHero() {\n  const [, navigate] = useLocation();\n\n  return (\n    <section className=\"relative overflow-hidden rounded-[2rem] border border-white/80 bg-white/70 p-5 shadow-[0_24px_90px_rgba(37,99,235,0.13)] backdrop-blur sm:rounded-[2.5rem] sm:p-8 lg:p-12\">\n      <div className=\"absolute left-0 top-0 h-44 w-44 rounded-full bg-blue-300/30 blur-3xl\" />\n      <div className=\"absolute bottom-0 right-0 h-56 w-56 rounded-full bg-emerald-300/30 blur-3xl\" />\n\n      <div className=\"relative grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(420px,0.95fr)] lg:items-center\">\n        <div className=\"space-y-7\">\n          <div className=\"inline-flex max-w-full items-center gap-2 rounded-full border border-blue-200 bg-white/85 px-4 py-2 text-sm font-bold text-blue-700 shadow-sm backdrop-blur\">\n            <HeartPulse className=\"h-4 w-4 shrink-0\" />\n            <span className=\"truncate\">{heroData.badge}</span>\n          </div>\n\n          <div className=\"space-y-5\">\n            <h1 className=\"max-w-4xl text-4xl font-black leading-[1.04] tracking-tight text-slate-950 sm:text-5xl xl:text-6xl\">\n              {heroData.title}\n            </h1>\n            <p className=\"max-w-2xl text-base leading-8 text-slate-600 sm:text-lg\">\n              {heroData.description}\n            </p>\n          </div>\n\n          <div className=\"flex flex-col gap-3 sm:flex-row sm:flex-wrap\">\n            <Button\n              size=\"lg\"\n              className=\"h-12 rounded-2xl bg-gradient-to-r from-blue-600 to-cyan-500 px-7 text-base font-black text-white shadow-lg shadow-blue-500/25 hover:from-blue-700 hover:to-cyan-600\"\n              onClick={() => navigate(heroData.primaryAction.href)}\n            >\n              {heroData.primaryAction.label}\n              <ArrowRight className=\"ml-1 h-4 w-4\" />\n            </Button>\n\n            <Button\n              size=\"lg\"\n              variant=\"ghost\"\n              className=\"h-12 rounded-2xl border border-slate-200 bg-white/85 px-7 text-base font-black text-slate-800 shadow-sm backdrop-blur hover:bg-white\"\n              onClick={() =>\n                document.getElementById(\"how-it-works\")\n                  ?.scrollIntoView({ behavior: \"smooth\", block: \"start\" })\n              }\n            >\n              {heroData.secondaryAction.label}\n            </Button>\n          </div>\n        </div>\n        {/* ...stat cards, highlight cards, device preview mockup... */}\n      </div>\n    </section>\n  );\n}",
+  status_ar:{en:"Academic — graduation project", ar:"أكاديمي — مشروع تخرج"},
+  arabic:"منصة معين هي منصة صحية متكاملة تساعد المريض على طلب النجدة، حجز موعد مع دكتور، طلب زيارة ممرضة، أو التواصل مع متطوع، كل هذا من مكان واحد. كل نوع مستخدم (مريض، دكتور، ممرضة، متطوع، مدير) عنده لوحة تحكم خاصة فيه. اشتغلت على الواجهة الأمامية والخلفية سوا، وربطت الدفع عبر PayPal والمكالمات عبر Zoom، وبنيت نظام تتبع الموقع المباشر لحالات الطوارئ."
+},
+{
+  id:"academia",
+  slug:"academia-central-portal",
+  filters:["frontend","academic","react"],
+  category:"education",
+  catColor:"var(--amber)",
+  title:"Academia Central Portal",
+  title_ar:"بوابة الطلاب المركزية",
+  oneLiner:{en:"A student portal with a course scraper/planner, calendar, tasks, materials and a community space.", ar:"بوابة طلابية فيها أداة بحث عن المواد، تقويم، مهام، مكتبة مواد وصفحة مجتمع."},
+  type:{en:"React + TypeScript frontend (shadcn/ui)", ar:"واجهة React + TypeScript"},
+  status:{en:"Frontend prototype — data is local/simulated, not connected to a live university system", ar:"نموذج واجهة أولي — البيانات محلية أو مُحاكاة، غير مرتبطة بنظام جامعي حقيقي"},
+  overview:{en:"Academia Central Portal is a student dashboard that pulls the scattered parts of university life — finding and planning courses, checking a calendar, tracking tasks, sharing materials, and a small community space — into a single portal, alongside a separate admin view.", ar:"بوابة الطلاب المركزية هي لوحة تحكم طلابية تجمع الأجزاء المتفرقة من الحياة الجامعية — إيجاد المواد والتخطيط لها، متابعة التقويم، تتبع المهام، مشاركة المواد، ومساحة مجتمع صغيرة — في بوابة واحدة، مع واجهة إدارية منفصلة."},
+  problem:{en:"Students typically juggle course catalogs, a separate schedule tool, shared drives for materials, and group chats for course discussion — with no single view of what they're taking, when, and what's due.", ar:"الطالب عادة يستخدم كتالوج مواد منفصل، أداة جدول منفصلة، مساحة تخزين مشتركة للمواد، ومحادثات جماعية لنقاش المواد — بدون رؤية واحدة توضح شو ماخذ، إمتى، وشو المطلوب."},
+  solution:{en:"A course scraper/search tool that shows schedule and seat availability and lets a student build a registration 'cart', plus a calendar, a task tracker, a shared materials library, a community page, and student and admin logins with separate layouts.", ar:"أداة بحث عن المواد توضح الجدول والمقاعد المتاحة وتتيح للطالب بناء 'سلة تسجيل'، بالإضافة لتقويم، متتبع مهام، مكتبة مواد مشتركة، صفحة مجتمع، وتسجيل دخول منفصل للطالب والمدير بواجهتين مختلفتين."},
+  myWork:{en:"I built the full frontend, including the dual-layout routing (a regular sidebar layout for students vs. a separate no-sidebar layout for admin on the same router) and the course-scraper feature itself — the typed course data model and the schedule/cart UI built on top of it.", ar:"بنيت الواجهة بالكامل، بما في ذلك التوجيه بواجهتين مختلفتين (واجهة عادية بشريط جانبي للطلاب مقابل واجهة إدارية بدون شريط جانبي على نفس نظام التوجيه) وأداة البحث عن المواد نفسها — نموذج بيانات المواد وواجهة الجدول والسلة المبنية فوقه."},
+  features:{en:[
+    "Course scraper — search by department/keyword, view schedule and seat availability, add to a registration cart",
+    "Personal calendar and task tracker",
+    "Shared materials library",
+    "Community page for students",
+    "Student profile, plus separate student and admin login flows"
+  ], ar:[
+    "أداة بحث عن المواد — بحث حسب القسم أو الكلمة المفتاحية، عرض الجدول والمقاعد المتاحة، إضافة لسلة التسجيل",
+    "تقويم شخصي ومتتبع مهام",
+    "مكتبة مواد مشتركة",
+    "صفحة مجتمع للطلاب",
+    "ملف شخصي للطالب، وتسجيل دخول منفصل للطالب والمدير"
+  ]},
+  stack:{
+    Frontend:["React","TypeScript","Vite","React Router","TanStack Query","shadcn/ui","Tailwind CSS","React Hook Form"]
+  },
+  highlights:{en:[
+    "Dual-layout architecture — a student Layout and a separate AdminLayout share one router without duplicating the app shell",
+    "A typed course-scraper data model (code, credits, instructor, schedule, availability) drives both the results table and the registration cart",
+  ], ar:[
+    "بنية بواجهتين — Layout للطالب و AdminLayout منفصل يشتركان بنفس نظام التوجيه بدون تكرار هيكل التطبيق",
+    "نموذج بيانات مكتوب بأنواع (TypeScript) لأداة البحث عن المواد (الرمز، الساعات، المحاضر، الجدول، المقاعد المتاحة) يغذي جدول النتائج وسلة التسجيل"
+  ]},
+  demo:"academia",
+  codeFile:"src/pages/LandingPage.tsx",
+  code:"const LandingPage = () => {\n  return (\n    <div className=\"min-h-screen relative overflow-hidden\">\n      {/* Background blobs */}\n      <div className=\"absolute top-0 right-0 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob\"></div>\n\n      <div className=\"relative z-10 bg-gradient-to-b from-white/70 via-white/50 to-white/30 backdrop-blur-sm\">\n        <header className=\"container mx-auto px-4 py-6\">\n          <div className=\"flex items-center justify-between\">\n            <Logo size=\"lg\" />\n            <div className=\"flex items-center gap-4\">\n              <Link to=\"/login\"><Button variant=\"outline\">Log in</Button></Link>\n              <Link to=\"/login\"><Button>Get Started</Button></Link>\n            </div>\n          </div>\n        </header>\n\n        <section className=\"container mx-auto px-4 py-16 md:py-24\">\n          <div className=\"max-w-4xl mx-auto text-center\">\n            <h1 className=\"text-4xl md:text-6xl font-bold tracking-tight mb-6\">\n              Maximize Your <span className=\"text-primary\">Academic Success</span>\n            </h1>\n            <p className=\"text-xl text-muted-foreground mb-10\">\n              Plan your courses, manage tasks, and collaborate with classmates.\n              The all-in-one platform to organize your academic journey.\n            </p>\n            <div className=\"flex flex-col sm:flex-row gap-4 justify-center\">\n              <Link to=\"/login\"><Button size=\"lg\">Get Started</Button></Link>\n              <Link to=\"/course-scraper\"><Button size=\"lg\" variant=\"outline\">Try Course Scheduler</Button></Link>\n            </div>\n          </div>\n        </section>\n        {/* ...features grid, CTA section and footer follow... */}\n      </div>\n    </div>\n  );\n};",
+  arabic:"هاي المنصة هي بوابة للطلاب تساعدهم يلاقوا المواد المتاحة، يشوفوا الجدول والمواعيد، يحطوا المواد يلي بدهم يسجلوها بسلة تسجيل، وكمان فيها تقويم ومهام ومكتبة مواد وصفحة مجتمع للطلاب. اشتغلت على كامل الواجهة وأداة البحث عن المواد. (بالكود الداخلي، المشروع مسمّى Schedulak.)"
+},
+{
+  id:"ailearn",
+  slug:"ai-learn",
+  filters:["fullstack","academic"],
+  category:"education",
+  catColor:"var(--amber)",
+  title:"AI Learn",
+  title_ar:"AI Learn",
+  oneLiner:{en:"A four-module interactive e-learning site that teaches AI basics with quizzes and progress tracking.", ar:"موقع تعليمي تفاعلي بأربع وحدات يعلّم أساسيات الذكاء الاصطناعي مع اختبارات وتتبع تقدم."},
+  type:{en:"PHP + MySQL (LAMP-stack) web app", ar:"تطبيق ويب بلغة PHP وقاعدة بيانات MySQL"},
+  status:{en:"Academic project — functional local app, uses local development database credentials", ar:"مشروع أكاديمي — تطبيق محلي شغال، يستخدم بيانات قاعدة بيانات تطوير محلية"},
+  overview:{en:"AI Learn teaches AI fundamentals through four short interactive modules — essentials and glossary, the ML workflow, neural networks, and AI ethics — each ending in a quiz, with progress and scores tracked as the learner moves through the course.", ar:"AI Learn يعلّم أساسيات الذكاء الاصطناعي عبر أربع وحدات تفاعلية قصيرة — الأساسيات والمصطلحات، خطوات التعلم الآلي، الشبكات العصبية، وأخلاقيات الذكاء الاصطناعي — تنتهي كل وحدة باختبار قصير، مع تتبع التقدم والنتائج أثناء تقدم المتعلم بالمساق."},
+  problem:{en:"AI concepts like the ML pipeline, neural networks and ethical trade-offs can feel dry and abstract when taught only through text, with no way to check whether the ideas actually landed.", ar:"مفاهيم الذكاء الاصطناعي مثل خطوات التعلم الآلي، الشبكات العصبية والمقايضات الأخلاقية ممكن تحس فيها جافة ومجردة لما تُشرح بالنص فقط، بدون طريقة للتأكد إذا الفكرة فعلاً وصلت."},
+  solution:{en:"Four bite-sized interactive modules, each with a short quiz. Progress and per-module scores are tracked in the session as the learner completes modules, with an admin panel to review, update or delete saved quiz results.", ar:"أربع وحدات تفاعلية قصيرة، كل وحدة فيها اختبار قصير. التقدم والنتائج لكل وحدة تُتبَّع في الجلسة أثناء إكمال المتعلم للوحدات، مع لوحة تحكم إدارية لمراجعة نتائج الاختبارات أو تعديلها أو حذفها."},
+  myWork:{en:"I built the full stack — the module content and interactive frontend, the PHP session logic that tracks progress and scores, a small ResultController/ResultModel pair for persisting quiz results to MySQL, and the admin login and dashboard.", ar:"بنيت التطبيق بالكامل — محتوى الوحدات والواجهة التفاعلية، منطق الجلسات بلغة PHP لتتبع التقدم والنتائج، ثنائي ResultController/ResultModel لحفظ نتائج الاختبارات في MySQL، وتسجيل الدخول ولوحة التحكم الإدارية."},
+  features:{en:[
+    "Landing page introducing the course",
+    "Four interactive modules: AI Essentials, ML Workflow, Neural Networks, AI Ethics",
+    "Per-module quizzes with saved scores",
+    "Session-based progress and completion tracking, no login required for learners",
+    "Admin login and dashboard to view, update or delete quiz results"
+  ], ar:[
+    "صفحة رئيسية تعرّف بالمساق",
+    "أربع وحدات تفاعلية: أساسيات الذكاء الاصطناعي، خطوات التعلم الآلي، الشبكات العصبية، أخلاقيات الذكاء الاصطناعي",
+    "اختبار قصير لكل وحدة مع حفظ النتيجة",
+    "تتبع التقدم والإنجاز عبر الجلسة، بدون الحاجة لتسجيل دخول للمتعلم",
+    "تسجيل دخول ولوحة تحكم إدارية لعرض نتائج الاختبارات أو تعديلها أو حذفها"
+  ]},
+  stack:{
+    Backend:["PHP","PDO"],
+    Database:["MySQL"],
+    Frontend:["Vanilla JavaScript","CSS"]
+  },
+  highlights:{en:[
+    "PDO with prepared statements and typed input validation (filter_input) in the results controller",
+    "Session-driven progress state, so only quiz results — not progress itself — need the database",
+    "A small MVC-style split (ResultController / ResultModel) introduced specifically for the results feature"
+  ], ar:[
+    "استخدام PDO مع استعلامات محضّرة (prepared statements) والتحقق من صحة المدخلات في وحدة تحكم النتائج",
+    "حالة تقدم قائمة على الجلسة، بحيث فقط نتائج الاختبارات — وليس التقدم نفسه — تحتاج قاعدة بيانات",
+    "تقسيم بسيط على نمط MVC (ResultController / ResultModel) خصيصًا لميزة النتائج"
+  ]},
+  demo:"ailearn",
+  codeFile:"index.php (landing hero)",
+  code:"<!-- ═══════════ HEADER ═══════════ -->\n<header id=\"main-header\">\n  <nav>\n    <a href=\"#\" class=\"nav-logo\">\n      <div class=\"logo-icon\">🧠</div>\n      <span>AI Learn</span>\n    </a>\n    <div class=\"nav-actions\">\n      <a href=\"admin_login.php\" class=\"btn-ghost\">Admin Login</a>\n      <a href=\"#start\" class=\"btn-primary\">Get Started →</a>\n    </div>\n  </nav>\n</header>\n\n<!-- ═══════════ HERO ═══════════ -->\n<section class=\"hero\" id=\"start\">\n  <div class=\"hero-bg\"></div>\n  <div class=\"orb orb-1\"></div>\n  <div class=\"orb orb-2\"></div>\n  <div class=\"orb orb-3\"></div>\n\n  <div class=\"hero-content\">\n    <div class=\"hero-badge\">\n      <span class=\"badge-dot\"></span>\n      Now Live — 4 New AI Modules Added\n    </div>\n\n    <h1>\n      Learn AI Basics<br>\n      <span class=\"gradient-text\">The Smart Way</span>\n    </h1>\n\n    <p>An interactive platform that makes artificial intelligence simple, engaging, and genuinely fun. Short modules. Quick quizzes. Real understanding.</p>\n\n    <form class=\"hero-form\" id=\"start-form\">\n      <div class=\"hero-input-wrap\">\n        <input id=\"username\" type=\"text\" placeholder=\"Your name to get started...\" maxlength=\"80\" required>\n      </div>\n      <button type=\"submit\" class=\"btn-hero\">Start Learning →</button>\n    </form>\n    <!-- ...social proof strip and module preview cards follow... -->\n  </div>\n</section>",
+  arabic:"AI Learn منصة تعليمية بسيطة بتعلّم أساسيات الذكاء الاصطناعي عن طريق أربع وحدات تفاعلية (أساسيات الذكاء الاصطناعي، خطوات التعلم الآلي، الشبكات العصبية، وأخلاقيات الذكاء الاصطناعي)، كل وحدة فيها اختبار قصير وبيتسجل التقدم والنتيجة. اشتغلت على الواجهة والخلفية سوا باستخدام PHP و MySQL."
+},
+{
+  id:"bugblaster",
+  slug:"react-bug-blaster",
+  filters:["react","training"],
+  category:"practice",
+  catColor:"var(--slate)",
+  title:"React Bug Blaster",
+  title_ar:"React Bug Blaster",
+  oneLiner:{en:"A bug-ticket tracker built to practice useReducer for related state.", ar:"تطبيق تتبع تذاكر أعطال للتمرّن على useReducer."},
+  type:{en:"React practice project (Create React App)", ar:"مشروع تدريبي بـ React"},
+  status:{en:"Training exercise", ar:"تمرين تدريبي"},
+  overview:{en:"A small bug-ticket tracker built specifically to practice managing several related pieces of state together with useReducer, instead of scattering them across multiple useState calls.", ar:"تطبيق صغير لتتبع تذاكر أعطال، بنيته خصيصًا للتمرّن على إدارة عدة أجزاء من الحالة مرتبطة ببعضها باستخدام useReducer بدل توزيعها على عدة useState."},
+  problem:{en:"Managing a ticket list, which ticket is being edited, and the current sort preference as three separate useState hooks gets messy fast once they need to update together.", ar:"إدارة قائمة تذاكر، والتذكرة الجاري تعديلها، وتفضيل الترتيب الحالي كثلاث useState منفصلة تصبح فوضى بسرعة عندما تحتاج تتحدّث مع بعض."},
+  solution:{en:"One useReducer manages tickets, editingTicket and sortPreference together through a single reducer function, with a small pure utility function handling the sort logic.", ar:"useReducer واحد يدير tickets وeditingTicket وsortPreference سوا عبر دالة reducer واحدة، مع دالة مساعدة نقية (pure function) تتولى منطق الترتيب."},
+  myWork:{en:"I built the reducer, the ticket form and list components, and the sorting utility.", ar:"بنيت الـ reducer، مكونات نموذج التذكرة والقائمة، وأداة الترتيب."},
+  features:{en:["Add and edit bug tickets","Ticket list view","Sort tickets by priority (e.g. High to Low)"], ar:["إضافة وتعديل تذاكر الأعطال","عرض قائمة التذاكر","ترتيب التذاكر حسب الأولوية"]},
+  stack:{ Frontend:["React","useReducer","CSS"] },
+  highlights:{en:["A single useReducer manages three related state values instead of multiple useState hooks","Sort logic lives in a separate pure function (sortingUtilities.js), kept out of the component"], ar:["useReducer واحد يدير ثلاث قيم حالة مترابطة بدل عدة useState","منطق الترتيب في دالة نقية منفصلة، بعيدًا عن المكوّن"]},
+  arabic:"تطبيق تدريبي بسيط لإدارة تذاكر أعطال (Bug Tickets)، استخدمته للتمرّن على useReducer في React بدل استخدام عدة useState متفرقة."
+},
+{
+  id:"moviedux",
+  slug:"react-moviedux",
+  filters:["react","training"],
+  category:"practice",
+  catColor:"var(--slate)",
+  title:"React MovieDux",
+  title_ar:"React MovieDux",
+  oneLiner:{en:"A movie browser with a personal watchlist, built to practice routing and fetch-based data loading.", ar:"تطبيق تصفح أفلام مع قائمة مشاهدة شخصية، للتمرّن على التوجيه وجلب البيانات."},
+  type:{en:"React practice project (Create React App)", ar:"مشروع تدريبي بـ React"},
+  status:{en:"Training exercise", ar:"تمرين تدريبي"},
+  overview:{en:"A small movie-browsing app that loads a local movie dataset and lets a user toggle movies into a personal watchlist, built to practice React Router and async data loading with fetch.", ar:"تطبيق صغير لتصفح الأفلام يحمّل بيانات أفلام محلية ويتيح للمستخدم إضافة أفلام لقائمة مشاهدة شخصية، بنيته للتمرّن على React Router وجلب البيانات بشكل غير متزامن باستخدام fetch."},
+  problem:{en:"Practicing two things at once: loading async data on mount, and keeping a derived selection (the watchlist) in sync across routed pages.", ar:"التمرّن على شيئين مع بعض: تحميل بيانات بشكل غير متزامن عند التحميل، والحفاظ على تزامن اختيار مشتق (قائمة المشاهدة) عبر صفحات موجّهة."},
+  solution:{en:"App fetches a local movies.json on load with useEffect, keeps a watchlist array in state at the top level, and passes a toggle handler down to the movie grid; a separate route renders the watchlist itself.", ar:"يقوم التطبيق بجلب ملف movies.json محلي عند التحميل باستخدام useEffect، ويحتفظ بمصفوفة قائمة المشاهدة في الحالة على المستوى الأعلى، ويمرر دالة تبديل للأسفل لشبكة الأفلام؛ ومسار منفصل يعرض قائمة المشاهدة نفسها."},
+  myWork:{en:"I built the components (Header, Footer, MoviesGrid, MovieCard, Watchlist), the routing between the movie grid and the watchlist view, and the toggle logic.", ar:"بنيت المكونات (Header، Footer، MoviesGrid، MovieCard، Watchlist)، التوجيه بين شبكة الأفلام وصفحة قائمة المشاهدة، ومنطق الإضافة والحذف."},
+  features:{en:["Movie grid loaded from a local JSON file","Add/remove a movie from a personal watchlist","Separate routed watchlist view"], ar:["شبكة أفلام محمّلة من ملف JSON محلي","إضافة/حذف فيلم من قائمة مشاهدة شخصية","صفحة قائمة مشاهدة منفصلة بمسار خاص"]},
+  stack:{ Frontend:["React","React Router","fetch API","CSS"] },
+  highlights:{en:["Uses a static movies.json as a mock API to practice async loading without a real backend","Watchlist state lifted to the top-level App component and passed down"], ar:["استخدام ملف movies.json ثابت كـ API وهمي للتمرّن على التحميل غير المتزامن بدون خلفية حقيقية","حالة قائمة المشاهدة مرفوعة لمكوّن App الرئيسي وممررة للأسفل"]},
+  arabic:"تطبيق تدريبي لعرض قائمة أفلام وإضافتها لقائمة مشاهدة خاصة، استخدمته للتمرّن على React Router وجلب البيانات بـ fetch وإدارة الحالة."
+},
+{
+  id:"training",
+  slug:"training-exercises",
+  filters:["training"],
+  category:"other",
+  catColor:"var(--grey)",
+  title:"HTML/CSS/JS Training Exercises",
+  title_ar:"تمارين تدريبية HTML/CSS/JS",
+  oneLiner:{en:"A set of small standalone coursework tasks practicing core HTML, CSS and JavaScript.", ar:"مجموعة مهام تدريبية بسيطة لتقوية أساسيات HTML وCSS وJavaScript."},
+  type:{en:"Coursework / training tasks", ar:"مهام تدريبية"},
+  status:{en:"Training / coursework — not standalone products", ar:"تدريبي — ليست منتجات مستقلة"},
+  overview:{en:"A handful of small, self-contained tasks from a practical training track — plain HTML/CSS/JS layout and scripting exercises, plus an exam-style task. They're deliberately small and are grouped here rather than presented as individual products.", ar:"مجموعة مهام صغيرة ومستقلة من مسار تدريب عملي — تمارين تصميم وبرمجة بلغات HTML/CSS/JS بسيطة، بالإضافة لمهمة على شكل امتحان. هذه المهام صغيرة بشكل مقصود ومجمّعة هنا بدل عرضها كمنتجات منفصلة."},
+  myWork:{en:"Built each task's markup, styling and scripting from a given brief as part of a training program.", ar:"بنيت تنسيق وتصميم وبرمجة كل مهمة حسب المطلوب كجزء من برنامج تدريبي."},
+  features:{en:["Multiple standalone HTML/CSS/JS layout tasks","A scripted interactivity task with its own JS file","An exam-style task"], ar:["عدة مهام تصميم مستقلة بـ HTML/CSS/JS","مهمة تفاعلية ببرمجة JS خاصة بها","مهمة على شكل امتحان"]},
+  stack:{ Frontend:["HTML","CSS","JavaScript"] },
+  arabic:"مجموعة تمارين ومهام تدريبية بسيطة بلغات HTML وCSS وJavaScript، سويتها كجزء من تدريب عملي لتقوية الأساسيات في تطوير الواجهات."
+}
+];
+
+const SKILLS = [
+  {cat:{en:"Frontend",ar:"الواجهة الأمامية"}, items:["React","Vite","TypeScript","JavaScript (ES6+)","Tailwind CSS","Radix UI / shadcn/ui","React Router / Wouter","TanStack Query","React Hook Form + Zod"]},
+  {cat:{en:"Backend",ar:"الخلفية"}, items:["Node.js","Express","PHP","Session-based auth","bcrypt"]},
+  {cat:{en:"Database",ar:"قواعد البيانات"}, items:["MongoDB / Mongoose","MySQL / PDO"]},
+  {cat:{en:"Tools, Cloud & Testing",ar:"أدوات وسحابة واختبارات"}, items:["Git","GitHub","npm","Docker","GitHub Actions","Render","AWS Cloud Foundations","AWS Data Engineering","Vitest","Playwright","ESLint"]},
+  {cat:{en:"Support & Business Systems",ar:"دعم وأنظمة أعمال"}, items:["Microsoft 365","Windows 10/11","Linux fundamentals","Network troubleshooting basics","Requirements analysis","Process documentation","QA / UAT","RESTful APIs","Responsive UI","Bilingual EN/AR + RTL UI"]}
+];
+
+/* =========================================================
+   APP STATE + RENDER
+   ========================================================= */
+const state = { lang:"en", theme:"dark", filter:"all", openId:null };
+
+function t(key){ return (I18N[state.lang] && I18N[state.lang][key]) || I18N.en[key] || key; }
+function loc(field){ return state.lang==="ar" && field && field.ar!==undefined ? field.ar : (field ? field.en : ""); }
+
+function applyI18nText(){
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const key = el.getAttribute("data-i18n");
+    el.textContent = t(key);
+  });
+  document.getElementById("langToggle").textContent = state.lang==="en" ? "EN / AR" : "AR / EN";
+}
+
+function setLang(lang){
+  state.lang = lang;
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang==="ar" ? "rtl" : "ltr";
+  applyI18nText();
+  renderSkills();
+  renderFilters();
+  renderProjects();
+  if(state.openId) openModal(state.openId);
+}
+
+function setTheme(theme){
+  state.theme = theme;
+  document.documentElement.setAttribute("data-theme", theme);
+  document.getElementById("themeIcon").textContent = theme==="dark" ? "☾" : "☀";
+  document.getElementById("themeLabel").textContent = theme==="dark"
+    ? (state.lang==="ar" ? "داكن" : "Dark")
+    : (state.lang==="ar" ? "فاتح" : "Light");
+}
+
+function renderSkills(){
+  const grid = document.getElementById("skillsGrid");
+  grid.innerHTML = SKILLS.map(group => `
+    <div class="skill-cat">
+      <h3>${loc(group.cat)}</h3>
+      <div class="skill-tags">${group.items.map(i=>`<span class="skill-tag mono">${i}</span>`).join("")}</div>
+    </div>
+  `).join("");
+}
+
+function renderFilters(){
+  const bar = document.getElementById("filterBar");
+  if(!bar) return;
+  bar.innerHTML = FILTERS.map(f => `
+    <button class="filter-chip ${state.filter===f.key?'active':''}" data-filter="${f.key}">${loc(f.label)}</button>
+  `).join("");
+  bar.querySelectorAll(".filter-chip").forEach(btn=>{
+    btn.addEventListener("click", ()=>{ state.filter = btn.dataset.filter; renderFilters(); renderProjects(); });
+  });
+}
+
+function renderProjects(){
+  const grid = document.getElementById("projectGrid");
+  const list = PROJECTS.filter(p => state.filter==="all" || p.filters.includes(state.filter));
+  if(!list.length){
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;">—</div>`;
+    return;
+  }
+  grid.innerHTML = list.map(p => `
+    <article class="project-card" style="--cat-color:${p.catColor}" data-id="${p.id}" tabindex="0" role="button" aria-label="${loc({en:p.title,ar:p.title_ar})}">
+      <div class="pc-top">
+        <h3>${loc({en:p.title,ar:p.title_ar})}</h3>
+        <span class="pc-status mono">${loc(p.status)}</span>
+      </div>
+      <p class="pc-desc">${loc(p.oneLiner)}</p>
+      <span class="pc-meta">${loc(p.type)}</span>
+      <div class="pc-tags">${firstTechs(p).map(tag=>`<span class="pc-tag">${tag}</span>`).join("")}</div>
+      <div class="pc-foot">
+        <span class="pc-view">${t("viewcase")} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+    </article>
+  `).join("");
+  grid.querySelectorAll(".project-card").forEach(card=>{
+    const open = ()=>openModal(card.dataset.id);
+    card.addEventListener("click", open);
+    card.addEventListener("keypress", e=>{ if(e.key==="Enter") open(); });
+  });
+}
+
+function firstTechs(p){
+  const all = Object.values(p.stack||{}).flat();
+  return all.slice(0,5);
+}
+
+function stackGroupsHtml(p){
+  return `<div class="stack-groups">${Object.entries(p.stack||{}).map(([group, items])=>`
+    <div class="stack-group">
+      <h5 class="mono">${group}</h5>
+      <div class="stack-chips">${items.map(i=>`<span class="pc-tag">${i}</span>`).join("")}</div>
+    </div>
+  `).join("")}</div>`;
+}
+
+function listHtml(arr){
+  return `<ul class="ms-list">${(arr||[]).map(i=>`<li>${i}</li>`).join("")}</ul>`;
+}
+
+function escapeCode(str){
+  return String(str).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+function codeHtml(p){
+  if(!p.code) return "";
+  const escaped = escapeCode(p.code);
+  return `<div class="ms-block">
+    <h4>${t("sec.code")}</h4>
+    <div class="code-box">
+      <div class="code-box-head">
+        <span>${p.codeFile}</span>
+        <button class="code-copy" data-copy-id="${p.id}">${t("copy")}</button>
+      </div>
+      <pre><code id="codeblock-${p.id}">${escaped}</code></pre>
+    </div>
+    <p class="demo-note">${loc({en:"Verbatim excerpt from the real project source — trimmed for length, not rewritten.",ar:"مقتطف حرفي من الكود الحقيقي للمشروع — مختصر بسبب الطول، غير معاد صياغته."})}</p>
+  </div>`;
+}
+
+function demoHtml(p){
+  if(!p.demo) return "";
+  let inner = "";
+  if(p.demo==="muen"){
+    inner = `
+      <div id="muenDemo">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+          <strong class="mono" style="font-size:12px;color:var(--muted)">EMERGENCY_REQUEST#4471</strong>
+          <span id="muenStatusPill" class="pc-tag mono" style="color:var(--accent-strong);border-color:var(--accent-strong)">Requested</span>
+        </div>
+        <p style="color:var(--ink-dim);font-size:13.5px;margin-bottom:14px;">${loc({en:"Click to step through the emergency-request status flow used in Mu'en.",ar:"اضغط للتنقل عبر مراحل حالة طلب الطوارئ المستخدمة في معين."})}</p>
+        <button class="btn" id="muenStepBtn" style="font-size:12px;padding:9px 16px;">${loc({en:"Advance status →",ar:"تقدّم للمرحلة التالية ←"})}</button>
+      </div>`;
+  } else if(p.demo==="academia"){
+    inner = `
+      <div id="academiaDemo">
+        <input id="courseSearch" class="mono" placeholder="${loc({en:'Search courses (e.g. CS, MATH)…',ar:'ابحث عن مادة (مثال: CS، MATH)…'})}"
+          style="width:100%;padding:10px 12px;background:var(--bg);border:1px solid var(--border);color:var(--ink);font-family:var(--font-mono);font-size:13px;margin-bottom:14px;">
+        <div id="courseResults"></div>
+      </div>`;
+  } else if(p.demo==="ailearn"){
+    inner = `
+      <div id="quizDemo">
+        <p id="quizQ" style="font-size:14.5px;margin-bottom:14px;"></p>
+        <div id="quizOpts" style="display:flex;flex-direction:column;gap:8px;"></div>
+        <p id="quizResult" class="mono" style="margin-top:14px;font-size:12px;color:var(--accent-strong);"></p>
+      </div>`;
+  }
+  return `<div class="ms-block"><h4>${t("sec.preview")}</h4><div class="demo-box">${inner}<p class="demo-note">${loc({en:"Recreated interaction based on the real feature — not the live application.",ar:"تفاعل مُعاد بناؤه بناءً على الميزة الحقيقية — وليس التطبيق الفعلي المباشر."})}</p></div></div>`;
+}
+
+function wireDemo(p){
+  if(p.demo==="muen"){
+    const stages = state.lang==="ar"
+      ? ["مطلوب","تعيين طبيب","في الطريق","تم الحل"]
+      : ["Requested","Doctor assigned","En route","Resolved"];
+    let i = 0;
+    const pill = document.getElementById("muenStatusPill");
+    const btn = document.getElementById("muenStepBtn");
+    if(btn){
+      btn.addEventListener("click", ()=>{
+        i = (i+1) % stages.length;
+        pill.textContent = stages[i];
+      });
+    }
+  } else if(p.demo==="academia"){
+    const courses = [
+      {code:"CS301", title:"Database Systems", credits:3, time:"Sun/Tue 10:00", seats:6},
+      {code:"CS210", title:"Data Structures", credits:3, time:"Mon/Wed 9:00", seats:0},
+      {code:"MATH201", title:"Linear Algebra", credits:3, time:"Sun/Tue 12:00", seats:14},
+      {code:"BUS110", title:"Intro to Business IT", credits:3, time:"Wed 13:00", seats:22}
+    ];
+    const input = document.getElementById("courseSearch");
+    const out = document.getElementById("courseResults");
+    function renderCourses(q){
+      const f = courses.filter(c => (c.code+c.title).toLowerCase().includes((q||"").toLowerCase()));
+      out.innerHTML = f.length ? f.map(c=>`
+        <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);font-size:13px;">
+          <span class="mono">${c.code}</span><span style="flex:1;">${c.title}</span><span class="mono" style="color:${c.seats>0?'var(--accent-strong)':'var(--danger)'}">${c.seats>0? c.seats+' seats':'full'}</span>
+        </div>`).join("") : `<p class="mono" style="color:var(--muted);font-size:12px;">${loc({en:"No matching courses.",ar:"لا توجد مواد مطابقة."})}</p>`;
+    }
+    renderCourses("");
+    if(input) input.addEventListener("input", e=>renderCourses(e.target.value));
+  } else if(p.demo==="ailearn"){
+    const q = state.lang==="ar"
+      ? {q:"شو بيسمى تقسيم البيانات إلى مجموعة تدريب واختبار؟", opts:["الانحدار","تقسيم البيانات (Data Split)","الترميز الأحادي"], correct:1}
+      : {q:"What's it called when you divide data into training and test sets?", opts:["Regression","Data split","One-hot encoding"], correct:1};
+    const qEl = document.getElementById("quizQ");
+    const optsEl = document.getElementById("quizOpts");
+    const resEl = document.getElementById("quizResult");
+    if(qEl){
+      qEl.textContent = q.q;
+      optsEl.innerHTML = q.opts.map((o,idx)=>`<button class="btn" data-idx="${idx}" style="text-align:${state.lang==='ar'?'right':'left'};font-size:13px;padding:10px 14px;">${o}</button>`).join("");
+      optsEl.querySelectorAll("button").forEach(b=>{
+        b.addEventListener("click", ()=>{
+          const ok = Number(b.dataset.idx)===q.correct;
+          resEl.textContent = ok
+            ? loc({en:"Correct — module score: 100%",ar:"إجابة صحيحة — نتيجة الوحدة: ١٠٠٪"})
+            : loc({en:"Not quite — try the next module.",ar:"مو صحيح — جرّب الوحدة التالية."});
+        });
+      });
+    }
+  }
+}
+
+function openModal(id){
+  const p = PROJECTS.find(x=>x.id===id);
+  if(!p) return;
+  state.openId = id;
+  document.getElementById("modalCat").textContent = loc(p.type);
+  document.getElementById("modalCat").style.setProperty("--cat-color", p.catColor);
+  document.querySelector(".modal-head").style.setProperty("--cat-color", p.catColor);
+  document.querySelector(".modal-panel").style.setProperty("--cat-color", p.catColor);
+
+  const body = document.getElementById("modalBody");
+  body.innerHTML = `
+    <h2>${loc({en:p.title,ar:p.title_ar})}</h2>
+    <p class="modal-sub">${loc(p.oneLiner)}</p>
+    <div class="status-line">
+      <span>${t("type.label")}: <b>${loc(p.type)}</b></span>
+      <span>${t("status.label")}: <b>${loc(p.status)}</b></span>
+    </div>
+    <hr class="section-divider" style="margin:26px 0;">
+    ${p.overview ? `<div class="ms-block"><h4>${t("sec.overview")}</h4><p>${loc(p.overview)}</p></div>` : ""}
+    ${p.problem ? `<div class="ms-block"><h4>${t("sec.problem")}</h4><p>${loc(p.problem)}</p></div>` : ""}
+    ${p.solution ? `<div class="ms-block"><h4>${t("sec.solution")}</h4><p>${loc(p.solution)}</p></div>` : ""}
+    ${p.myWork ? `<div class="ms-block"><h4>${t("sec.mywork")}</h4><p>${loc(p.myWork)}</p></div>` : ""}
+    ${p.features ? `<div class="ms-block"><h4>${t("sec.features")}</h4>${listHtml(loc(p.features))}</div>` : ""}
+    ${p.stack ? `<div class="ms-block"><h4>${t("sec.stack")}</h4>${stackGroupsHtml(p)}</div>` : ""}
+    ${p.highlights ? `<div class="ms-block"><h4>${t("sec.highlights")}</h4>${listHtml(loc(p.highlights))}</div>` : ""}
+    ${codeHtml(p)}
+    ${demoHtml(p)}
+    ${p.arabic ? `<div class="ms-block ar-block"><h4>${t("sec.arabic")}</h4><p>${p.arabic}</p></div>` : ""}
+  `;
+  document.getElementById("modalOverlay").classList.add("open");
+  document.body.style.overflow = "hidden";
+  wireDemo(p);
+  const copyBtn = body.querySelector(".code-copy");
+  if(copyBtn){
+    copyBtn.addEventListener("click", ()=>{
+      const codeEl = document.getElementById(`codeblock-${p.id}`);
+      const text = codeEl ? codeEl.textContent : "";
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(()=>{
+          copyBtn.textContent = t("copied");
+          setTimeout(()=>{ copyBtn.textContent = t("copy"); }, 1500);
+        }).catch(()=>{});
+      }
+    });
+  }
+}
+
+function closeModal(){
+  document.getElementById("modalOverlay").classList.remove("open");
+  document.body.style.overflow = "";
+  state.openId = null;
+}
+
+/* ============ INIT ============ */
+document.getElementById("langToggle").addEventListener("click", ()=> setLang(state.lang==="en" ? "ar" : "en"));
+document.getElementById("themeToggle").addEventListener("click", ()=> setTheme(state.theme==="dark" ? "light" : "dark"));
+document.getElementById("menuToggle").addEventListener("click", ()=> document.getElementById("mainNav").classList.toggle("open"));
+document.querySelectorAll("#mainNav a").forEach(a=> a.addEventListener("click", ()=> document.getElementById("mainNav").classList.remove("open")));
+document.getElementById("modalClose").addEventListener("click", closeModal);
+document.getElementById("modalOverlay").addEventListener("click", e=>{ if(e.target.id==="modalOverlay") closeModal(); });
+document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeModal(); });
+
+setLang("en");
+setTheme("dark");
+</script>
+
+<style>
+.case-hero{border:1px solid var(--border);background:linear-gradient(135deg,color-mix(in srgb,var(--surface) 88%,var(--cat-color,var(--accent)) 12%),var(--surface));padding:22px;margin-bottom:28px}
+.case-hero h3{font-size:24px;margin-bottom:10px}
+.case-hero p{max-width:68ch;color:var(--ink-dim)}
+.case-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.source-trail{display:grid;gap:8px;margin-top:12px}
+.source-trail code{display:block;white-space:normal;overflow-wrap:anywhere;border:1px solid var(--border);background:var(--surface);padding:8px 10px;color:var(--ink-dim);font-size:11px}
+.preview-frame{border:1px solid var(--border);background:#f8fafc;color:#0f172a;overflow:hidden}
+.preview-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.preview-tab{border:1px solid var(--border);background:var(--surface);color:var(--ink-dim);font-family:var(--font-mono);font-size:11px;padding:7px 10px;cursor:pointer}
+.preview-tab.active{background:var(--cat-color,var(--accent));border-color:var(--cat-color,var(--accent));color:var(--accent-ink)}
+.source-preview{display:none}
+.source-preview.active{display:block}
+.phone-app{max-width:390px;margin:0 auto;background:white;min-height:520px;font-family:Arial,sans-serif}
+.phone-head{height:58px;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;justify-content:space-between;padding:0 16px}
+.phone-logo{display:flex;align-items:center;gap:8px;font-weight:800;color:#2563eb}
+.phone-logo-mark{width:34px;height:34px;border-radius:10px;background:#dbeafe;display:grid;place-items:center}
+.phone-main{padding:20px 16px}
+.role-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.role-card{border-radius:14px;padding:14px;background:#eff6ff}
+.role-card:nth-child(3){background:#ecfdf5}.role-card:nth-child(4){background:#fef2f2}
+.role-card h5{margin:0 0 4px;font-size:13px;color:#0f172a}.role-card p,.role-card li{font-size:11px;line-height:1.35;color:#64748b}
+.role-card ul{margin:8px 0 0;padding-left:14px}
+.pill-btn{border:0;border-radius:999px;padding:9px 16px;font-weight:700;background:#2563eb;color:white}
+.outline-btn{border:1px solid #e5e7eb;border-radius:999px;padding:9px 16px;font-weight:700;background:white;color:#0f172a}
+.help-btn{width:100%;border:0;border-radius:18px;background:#ef4444;color:white;padding:28px 16px;text-align:center;box-shadow:0 12px 28px rgba(239,68,68,.28)}
+.service-row{display:flex;gap:12px;align-items:flex-start;border-radius:14px;background:white;box-shadow:0 2px 12px rgba(15,23,42,.08);padding:13px;margin-bottom:10px}
+.service-ico{width:38px;height:38px;border-radius:999px;background:#eff6ff;display:grid;place-items:center}
+.status-card{border-radius:20px;background:#0f172a;color:white;padding:24px;text-align:center}
+.status-pill{display:inline-block;border-radius:999px;background:#fef3c7;color:#b45309;padding:7px 14px;font-size:12px;font-weight:800}
+.app-card{background:white;border:1px solid #e5e7eb;border-radius:14px;padding:16px;box-shadow:0 8px 20px rgba(15,23,42,.06)}
+.academia{background:linear-gradient(#ffffffcc,#ffffff99),#eef6ff;padding:18px;font-family:Arial,sans-serif}
+.acad-hero{text-align:center;padding:28px 12px}
+.acad-title{font-size:32px;font-weight:800;background:linear-gradient(90deg,#1d4ed8,#38bdf8);-webkit-background-clip:text;color:transparent}
+.acad-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.acad-card{background:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.8);border-radius:10px;padding:14px;box-shadow:0 8px 20px rgba(30,64,175,.08)}
+.course-row{display:grid;grid-template-columns:80px 1fr 70px;gap:8px;align-items:center;border-top:1px solid #e5e7eb;padding:9px 0;font-size:12px}
+.day-chip{border:1px solid #dbeafe;background:#eff6ff;border-radius:8px;padding:7px 10px;font-size:12px}
+.ailearn{background:white;color:#0a0a0f;font-family:Arial,sans-serif}
+.ai-hero{position:relative;text-align:center;padding:48px 20px;background:radial-gradient(circle at top,#ede9fe,transparent 55%)}
+.ai-badge{display:inline-flex;border-radius:999px;background:#ede9fe;color:#5548d9;padding:6px 12px;font-size:11px;font-weight:800;text-transform:uppercase}
+.ai-title{font-size:38px;font-weight:900;margin:16px 0 10px}.ai-title span{background:linear-gradient(135deg,#5548d9,#7c3aed,#0ea5e9);-webkit-background-clip:text;color:transparent}
+.ai-form{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:18px}.ai-form input{border:1px solid #ddd;border-radius:999px;padding:11px 14px;min-width:220px}.ai-form button{border:0;border-radius:999px;background:#5548d9;color:white;padding:11px 16px;font-weight:800}
+.module-preview{padding:20px;background:#f8f7ff}.module-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}.module-card{background:white;border-radius:14px;padding:14px;border:1px solid #eee}
+.bug-app{background:#f4f4f4;color:#333;font-family:Arial,sans-serif;padding:24px}.bug-box{max-width:720px;margin:auto}.bug-input{display:block;width:100%;padding:8px;margin:8px 0 16px;border:1px solid #ccc;border-radius:5px}.priority-field{border:1px solid #ccc;padding:10px;display:flex;gap:14px;justify-content:center}.blue-button{background:#007bff;color:white;border:0;border-radius:5px;padding:10px 18px;margin:10px 6px}.ticket-item{position:relative;border:1px solid #ccc;border-radius:5px;padding:12px;margin:14px 0;background:white}.priority-dot-real{position:absolute;right:10px;top:10px;width:10px;height:10px;border-radius:50%;background:red}
+.movie-app{background:#121212;color:white;font-family:Arial,sans-serif;padding:20px}.movie-nav{display:flex;justify-content:center;gap:10px;margin:16px 0}.movie-nav span{background:white;color:#111;border-radius:999px;padding:8px 18px}.movie-search{width:100%;border-radius:999px;padding:13px;margin:12px 0}.movie-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}.movie-card-real{background:#272727;border-radius:8px;overflow:hidden;text-align:center;box-shadow:0 10px 10px rgba(0,0,0,.5)}.movie-poster{height:150px;background:linear-gradient(135deg,#334155,#111827);display:grid;place-items:center;color:#94a3b8}.movie-info{padding:12px}.movie-rating{background:#141414;border-radius:999px;padding:3px 10px;margin-left:6px}.watch-switch{margin:12px auto 0;border-radius:999px;background:#141414;color:white;font-size:11px;padding:6px 10px;display:inline-block}.watch-switch.on{background:#ffa100}
+.training-preview{background:#f4f4f4;color:#333;font-family:Arial,sans-serif}.training-header{background:#222;color:white;text-align:center;padding:18px}.training-nav{margin-top:8px;display:flex;justify-content:center;gap:16px;font-weight:700}.training-card{max-width:700px;margin:34px auto;background:white;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.1);padding:26px;text-align:center}.video-grid-mini{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:18px}.video-card-mini{background:white;border-radius:10px;overflow:hidden;box-shadow:0 6px 16px rgba(0,0,0,.12)}.video-thumb{height:82px;background:#111;color:white;display:grid;place-items:center}
+@media(max-width:640px){.modal-body{padding:28px 20px 70px}.course-row{grid-template-columns:1fr}.ai-title{font-size:30px}}
+</style>
+<script>
+(() => {
+  Object.assign(I18N.en, {
+    "sec.hero":"Project Hero","sec.realpreview":"Real Project Preview","sec.what":"What is this project?","sec.how":"How the actual project works","sec.architecture":"Architecture","sec.screens":"Project Screens / UI Gallery","sec.lessons":"Lessons Learned"
+  });
+  Object.assign(I18N.ar, {
+    "sec.hero":"واجهة المشروع","sec.realpreview":"معاينة حقيقية للمشروع","sec.what":"ما هو هذا المشروع؟","sec.how":"كيف يعمل المشروع فعليًا","sec.architecture":"البنية التقنية","sec.screens":"شاشات المشروع","sec.lessons":"الدروس المستفادة"
+  });
+
+  const updates = {
+    muen: {
+      sourceFiles:["Mu'en_Project/Muen-main copy/client/src/features/landing/components/LandingHero.jsx","client/src/features/landing/landing.data.js","client/src/features/patient-services/patientServiceCards.js","client/src/components/patient/PatientEmergencyForm.jsx","client/src/components/patient/PatientStatusCard.jsx","client/src/components/doctor/DoctorRouteTracker.jsx","server/routes/emergency-request-routes/*","server/features/admin/*"],
+      howWorks:{en:"The React client routes users into role-specific areas. Patients choose services, submit emergency/nurse/volunteer/appointment requests, and track status. Providers and admins receive those requests through dedicated dashboards. The Express server stores users, requests, appointments, reviews, payments, settings, and activity data in MongoDB via Mongoose.",ar:"واجهة React توجّه المستخدم حسب الدور. المريض يختار الخدمة ويرسل طلب طوارئ أو ممرض أو متطوع أو موعد ويتابع الحالة. مقدمو الخدمة والإدارة يستقبلون الطلبات من لوحات تحكم منفصلة. خادم Express يحفظ المستخدمين والطلبات والمواعيد والتقييمات والمدفوعات والإعدادات وسجل النشاط في MongoDB عبر Mongoose."},
+      architecture:{en:["React/Vite client organized by feature folders such as landing, patient-services, appointments, nurse-requests, volunteer-requests, admin, profile, and chatbot.","Express server split into route modules, feature services, Mongoose models, storage helpers, and integration services for PayPal and Zoom.","Shared schema/constants layer supports contracts used across client and server."],ar:["واجهة React/Vite منظمة حسب الميزة مثل landing وpatient-services وappointments وnurse-requests وvolunteer-requests وadmin وprofile وchatbot.","خادم Express مقسم إلى مسارات، خدمات ميزات، نماذج Mongoose، أدوات تخزين، وخدمات تكامل لـ PayPal وZoom.","طبقة shared تحتوي مخططات وثوابت مشتركة بين الواجهة والخادم."]},
+      screens:{en:["Landing hero with device preview, highlights, stats, services, workflow, CTA, and footer.","Patient services cards for nurse requests, volunteer requests, appointments, reminders, nearby hospitals, and health records.","Emergency request form with live GPS requirement and map preview.","Patient status card with request ID, status badge, details, route tracker, cancellation, and doctor rating when resolved.","Doctor route tracker with patient details, responder GPS, map, and status action."],ar:["صفحة هبوط فيها معاينة أجهزة، نقاط بارزة، إحصاءات، خدمات، خطوات العمل، دعوة إجراء وتذييل.","بطاقات خدمات المريض: طلب ممرض، طلب متطوع، المواعيد، تذكير الأدوية، المستشفيات القريبة، والسجل الصحي.","نموذج طلب الطوارئ مع متطلب GPS مباشر ومعاينة خريطة.","بطاقة حالة للمريض فيها رقم الطلب، شارة الحالة، التفاصيل، تتبع الطريق، الإلغاء، وتقييم الطبيب عند الحل.","متتبع طريق للطبيب فيه تفاصيل المريض، GPS المستجيب، الخريطة، وإجراء الحالة."]},
+      lessons:{en:["Large role-based apps are easier to maintain when UI, routes, services, and helpers are grouped by domain.","Emergency workflows need visible state, clear cancellation paths, and careful live-location handling.","Mock/fallback integration modes help keep the project testable without production PayPal or Zoom credentials."],ar:["التطبيقات متعددة الأدوار تصبح أسهل صيانة عندما تُنظم الواجهة والمسارات والخدمات حسب المجال.","تدفقات الطوارئ تحتاج حالة واضحة، مسار إلغاء واضح، وتعامل دقيق مع الموقع المباشر.","أوضاع التكامل التجريبية تساعد على اختبار المشروع بدون مفاتيح PayPal أو Zoom إنتاجية."]},
+      preview:"muen-real"
+    },
+    vitallink: {
+      sourceFiles:["react co/vital-link-main/src/App.tsx","src/pages/Landing.tsx","src/pages/Login.tsx","src/pages/patient/Dashboard.tsx","src/pages/patient/Services.tsx","src/pages/patient/FindDoctor.tsx","src/pages/patient/WaitingScreen.tsx","src/components/AppHeader.tsx","src/index.css"],
+      howWorks:{en:"React Router maps the public landing, auth pages, patient dashboard, services, doctor search, waiting screen, patient profile, doctor dashboard, and admin dashboard. The patient flow is simulated on the client: login navigates to the patient dashboard, the HELP action routes to a waiting screen, and the waiting status changes after a timer.",ar:"React Router يربط الصفحة الرئيسية، صفحات الدخول، لوحة المريض، الخدمات، البحث عن طبيب، شاشة الانتظار، ملف المريض، لوحة الطبيب، ولوحة الإدارة. تدفق المريض مُحاكى في الواجهة: تسجيل الدخول ينقل للوحة المريض، زر HELP ينقل لشاشة الانتظار، والحالة تتغير بعد مؤقت."},
+      architecture:{en:["Vite React TypeScript frontend only.","Route-based pages under src/pages for patient, doctor, and admin roles.","shadcn/ui-style tokens and Tailwind variables in src/index.css."],ar:["واجهة Vite React TypeScript فقط.","صفحات حسب المسار داخل src/pages لأدوار المريض والطبيب والمدير.","ألوان Tailwind ومتغيرات بأسلوب shadcn/ui داخل src/index.css."]},
+      screens:{en:["Landing page with Mu'in header, role cards for Patients, Doctors, Nurses, and Volunteers, auth actions, and support badges.","Login form with logo, email/password fields, show-password toggle, sign-in action, signup link, and forgot link.","Patient dashboard with HELP button, services/profile actions, and chatbot floating button.","Services list and find-doctor filter form with doctor cards.","Waiting screen with request ID, status pill, request details, update message, optional assigned doctor card, and cancel button."],ar:["صفحة هبوط مع رأس مُعين، بطاقات أدوار للمرضى والأطباء والممرضين والمتطوعين، أزرار الدخول، وشارات دعم.","نموذج دخول فيه شعار، حقول بريد/كلمة مرور، زر إظهار كلمة المرور، تسجيل الدخول، رابط التسجيل، ورابط النسيان.","لوحة مريض فيها زر HELP، إجراءات الخدمات والملف الشخصي، وزر محادثة عائم.","قائمة خدمات ونموذج بحث عن طبيب مع بطاقات أطباء.","شاشة انتظار فيها رقم طلب، شارة حالة، تفاصيل الطلب، رسالة تحديث، بطاقة الطبيب عند القبول، وزر إلغاء."]},
+      lessons:{en:["A frontend prototype can communicate a full product flow when routes and states are explicit.","Mock data should be labeled as prototype data so it is not confused with production backend behavior."],ar:["النموذج الأمامي يستطيع شرح تدفق منتج كامل عندما تكون المسارات والحالات واضحة.","البيانات المحاكية يجب توضيح أنها بيانات نموذج أولي حتى لا تُفهم كخلفية إنتاجية."]},
+      preview:"vital-real"
+    },
+    academia: {
+      sourceFiles:["academia-central-portal-main/src/pages/LandingPage.tsx","src/pages/Dashboard.tsx","src/pages/CourseScraper.tsx","src/pages/Tasks.tsx","src/components/CourseCard.tsx","src/components/Logo.tsx","package.json"],
+      howWorks:{en:"The app uses React Router pages and local mock data. The dashboard renders course cards from component state. The Course Scheduler filters a mock course database by selected days and time range, then generates up to three non-conflicting schedule options around a target credit count.",ar:"التطبيق يستخدم صفحات React Router وبيانات محلية محاكاة. لوحة التحكم تعرض بطاقات مواد من حالة المكوّن. Course Scheduler يفلتر قاعدة مواد محلية حسب الأيام والوقت، ثم يولد حتى ثلاث خيارات جدول بدون تعارض حول عدد ساعات مستهدف."},
+      architecture:{en:["Vite React TypeScript app using shadcn/ui, Radix UI, Tailwind, React Router, and TanStack Query dependency setup.","Pages are separated for landing, login, dashboard, courses, course scraper, tasks, calendar, profile, materials, community, admin login, and admin dashboard.","CourseCard and shared UI components keep repeated card/table/form patterns reusable."],ar:["تطبيق Vite React TypeScript يستخدم shadcn/ui وRadix UI وTailwind وReact Router وتجهيز TanStack Query.","الصفحات منفصلة للهبوط، الدخول، اللوحة، المواد، مجدول المواد، المهام، التقويم، الملف، المواد التعليمية، المجتمع، دخول المدير، ولوحة المدير.","CourseCard ومكونات UI المشتركة تعيد استخدام أنماط البطاقات والجداول والنماذج."]},
+      screens:{en:["Landing page branded Schedulak with login/get-started actions and feature cards for scheduling, tasks, study groups, materials, time analytics, and more.","Dashboard grid of course cards with instructor, duration, progress bar, View Details, and Continue buttons.","Course Scheduler preferences: selected days, from/to time range, target credits, find courses, generate schedules, results table, and schedule options."],ar:["صفحة هبوط باسم Schedulak مع أزرار دخول/بدء وبطاقات ميزات للجدولة والمهام ومجموعات الدراسة والمواد وتحليل الوقت والمزيد.","شبكة لوحة تحكم من بطاقات مواد فيها المدرس والمدة وشريط التقدم وأزرار View Details وContinue.","تفضيلات Course Scheduler: اختيار الأيام، وقت من/إلى، الساعات المستهدفة، البحث عن المواد، توليد الجداول، جدول النتائج، وخيارات الجدول."]},
+      lessons:{en:["Course scheduling needs both filtering constraints and conflict detection, even with local prototype data.","Feature breadth should be represented honestly: Tasks exists as a simple placeholder page, while Course Scheduler contains the real logic."],ar:["جدولة المواد تحتاج فلترة قيود وكشف تعارضات حتى مع بيانات نموذجية محلية.","يجب عرض نطاق المشروع بصدق: صفحة Tasks موجودة كصفحة بسيطة، بينما Course Scheduler يحتوي المنطق الحقيقي."]},
+      preview:"academia-real"
+    },
+    ailearn: {
+      sourceFiles:["e-elearing-main/index.php","app.php","module.php","dashboard.php","sidebar.php","app.js","ResultController.php","ResultModel.php","landing.css","style.css","images/*.png"],
+      howWorks:{en:"Learners enter a name on the landing page and move into a PHP session-based app. app.php initializes module completion and score state for four modules. app.js handles view switching, step navigation, quiz rendering/submission, and progress reset. ResultController and ResultModel persist quiz results through validated POST handlers and PDO.",ar:"المتعلم يدخل اسمه في صفحة الهبوط ثم ينتقل لتطبيق PHP قائم على الجلسات. app.php يجهز حالة إكمال ونتائج أربع وحدات. app.js يدير تبديل الشاشات والتنقل بين الخطوات وبناء الاختبارات وإرسالها وإعادة ضبط التقدم. ResultController وResultModel يحفظان النتائج عبر POST مع تحقق ومدخلات PDO."},
+      architecture:{en:["PHP pages/includes for landing, app shell, sidebar, header, dashboard, and module content.","Vanilla JavaScript quiz engine with a QUIZZES object for four modules and DOM-based view/step controls.","PDO-backed ResultModel with ResultController endpoints for save, update, and delete."],ar:["صفحات PHP وincludes للهبوط، هيكل التطبيق، القائمة الجانبية، الرأس، اللوحة، ومحتوى الوحدات.","محرك اختبارات JavaScript عادي يحتوي QUIZZES لأربع وحدات وتحكم DOM بالشاشات والخطوات.","ResultModel مبني على PDO مع ResultController للحفظ والتعديل والحذف."]},
+      screens:{en:["Landing page with AI Learn logo, Admin Login, Get Started, name form, and course introduction.","Dashboard showing session progress across four modules and average score.","Four module views: AI Essentials, ML Workflow, Neural Networks, and AI Ethics, each with step navigation and quizzes.","Admin result management via save/update/delete controller/model files."],ar:["صفحة هبوط فيها شعار AI Learn، دخول المدير، Get Started، نموذج الاسم، وتعريف المساق.","لوحة تعرض تقدم الجلسة عبر أربع وحدات ومتوسط النتيجة.","أربع شاشات وحدات: AI Essentials وML Workflow وNeural Networks وAI Ethics، مع خطوات واختبارات.","إدارة النتائج من خلال ملفات controller/model للحفظ والتعديل والحذف."]},
+      lessons:{en:["PHP sessions are a lightweight fit for per-learner progress when login is not required.","Keeping quiz data in one object makes the vanilla JS flow easier to reason about.","Prepared statements and validation matter even in a small academic admin panel."],ar:["جلسات PHP مناسبة لتقدم المتعلم عندما لا يوجد تسجيل دخول.","وضع بيانات الاختبارات في كائن واحد يجعل تدفق JavaScript أوضح.","الاستعلامات المحضرة والتحقق من المدخلات مهمان حتى في لوحة أكاديمية صغيرة."]},
+      preview:"ailearn-real"
+    },
+    bugblaster: {
+      sourceFiles:["react co/react-bug-blaster-main/src/App.js","src/components/TicketForm.js","src/components/TicketList.js","src/components/TicketItem.js","src/reducers/ticketReducer.js","src/utilities/sortingUtilities.js","src/styles.css"],
+      howWorks:{en:"App.js initializes useReducer with tickets, editingTicket, and sortPreference. TicketForm dispatches ADD_TICKET or UPDATE_TICKET. TicketItem dispatches DELETE_TICKET and SET_EDITING_TICKET. The results section appears only when tickets exist and sorts with sortTickets by High to Low or Low to High.",ar:"App.js يبدأ useReducer بحالات tickets وeditingTicket وsortPreference. TicketForm يرسل ADD_TICKET أو UPDATE_TICKET. TicketItem يرسل DELETE_TICKET وSET_EDITING_TICKET. قسم النتائج يظهر فقط عند وجود تذاكر ويرتب عبر sortTickets من الأعلى للأقل أو العكس."},
+      architecture:{en:["Create React App project.","Reducer centralizes ticket, edit, delete, clear-edit, and sorting actions.","Sorting is extracted into a pure utility function."],ar:["مشروع Create React App.","Reducer مركزي لإضافة وتعديل وحذف ومسح التعديل وترتيب التذاكر.","الترتيب مفصول في دالة نقية مستقلة."]},
+      screens:{en:["Main page with Bug Blaster heading, ticket form, title input, description textarea, priority radio group, and submit button.","Results section with All Tickets, sorting dropdown, ticket cards, priority dot, Delete, and Edit buttons."],ar:["صفحة رئيسية فيها عنوان Bug Blaster، نموذج تذكرة، حقل عنوان، وصف، مجموعة أولوية، وزر Submit.","قسم نتائج فيه All Tickets، قائمة ترتيب، بطاقات تذاكر، نقطة أولوية، وأزرار Delete وEdit."]},
+      lessons:{en:["Related state is clearer in a reducer once add/edit/delete/sort actions start interacting.","A small pure sorting utility keeps component rendering focused on UI."],ar:["الحالة المترابطة تصبح أوضح في reducer عندما تتداخل إجراءات الإضافة والتعديل والحذف والترتيب.","دالة ترتيب نقية صغيرة تبقي المكوّن مركزًا على الواجهة."]},
+      preview:"bug-real"
+    },
+    moviedux: {
+      sourceFiles:["react co/react-moviedux-main/src/App.js","src/components/Header.js","src/components/MoviesGrid.js","src/components/MovieCard.js","src/components/Watchlist.js","src/styles.css","public/movies.json","public/images/*.jpg"],
+      howWorks:{en:"App.js fetches public/movies.json on mount, stores movies and watchlist in state, and routes between Home and Watchlist. MoviesGrid filters by search text, genre, and rating. MovieCard displays an image from public/images and toggles a checkbox-style watchlist switch.",ar:"App.js يجلب public/movies.json عند التحميل، ويحفظ الأفلام وقائمة المشاهدة في الحالة، ويوجه بين Home وWatchlist. MoviesGrid يفلتر حسب البحث والنوع والتقييم. MovieCard يعرض صورة من public/images ويبدل مفتاح قائمة المشاهدة."},
+      architecture:{en:["Create React App with React Router.","Top-level state stores movies and selected watchlist IDs.","Filtering logic lives in MoviesGrid; display/toggle UI lives in MovieCard."],ar:["Create React App مع React Router.","الحالة الرئيسية تحفظ الأفلام ومعرّفات قائمة المشاهدة.","منطق الفلترة داخل MoviesGrid وواجهة العرض/التبديل داخل MovieCard."]},
+      screens:{en:["Header with project logo, Home and Watchlist nav links.","Movie grid with search input, Genre dropdown, Rating dropdown, cards, rating color classes, and watchlist switch.","Watchlist route that renders only selected movie cards."],ar:["رأس فيه شعار المشروع وروابط Home وWatchlist.","شبكة أفلام مع حقل بحث وقائمة Genre وقائمة Rating وبطاقات وتصنيفات ملونة ومفتاح watchlist.","مسار Watchlist يعرض الأفلام المختارة فقط."]},
+      lessons:{en:["Lifting watchlist state to App keeps the Home and Watchlist routes synchronized.","Local JSON is enough to practice fetch-driven UI without a backend."],ar:["رفع حالة watchlist إلى App يحافظ على تزامن Home وWatchlist.","JSON محلي يكفي للتمرّن على واجهة تعتمد على fetch بدون خلفية."]},
+      preview:"movie-real"
+    },
+    training: {
+      sourceFiles:["تدريب/مهام/task#!/task#1/Index.html","task#!/task#1/style.css","task-2/index.html","task-2/script.js","task and exam/exam/index.html","task and exam/exam/script.js","Task-5/index.html","Task-5/js/script.js"],
+      howWorks:{en:"This is a collection of standalone HTML/CSS/JS exercises. The verified files include a first static website, a video gallery with search filtering, a welcome screen hidden after a timeout, and Task 5 sections for grid/list view, share links, cards, product card, and a to-do list.",ar:"هذه مجموعة تمارين HTML/CSS/JS مستقلة. الملفات المؤكدة تشمل أول موقع ثابت، معرض فيديو مع فلترة بحث، شاشة ترحيب تختفي بعد مؤقت، وTask 5 بأقسام عرض شبكة/قائمة وروابط مشاركة وبطاقات وبطاقة منتج وقائمة مهام."},
+      architecture:{en:["Plain HTML files with linked CSS and JavaScript.","Each task is standalone rather than one combined application.","Interactivity is DOM-based: search filtering, timeout hiding, view switching, sharing links, cart/todo actions."],ar:["ملفات HTML عادية مرتبطة بـ CSS وJavaScript.","كل مهمة مستقلة وليست تطبيقًا واحدًا.","التفاعل مبني على DOM: فلترة البحث، الإخفاء بالمؤقت، تبديل العرض، روابط المشاركة، وإجراءات السلة/المهام."]},
+      screens:{en:["My First Website: header, Home/About/Contact nav, centered welcome card, Learn More button, footer.","Video Gallery: hero, video search input, video cards using Source/1.mp4 and Source/1.png, no-results message.","Welcome task: loading welcome page that hides after 3 seconds, header/nav, hero, footer.","Task 5: grid/list items, team cards, social share links, neumorphism cards, product card, and to-do list."],ar:["My First Website: رأس، تنقل Home/About/Contact، بطاقة ترحيب وسطية، زر Learn More، وتذييل.","Video Gallery: بطل، حقل بحث فيديو، بطاقات فيديو تستخدم Source/1.mp4 وSource/1.png، ورسالة عدم وجود نتائج.","مهمة الترحيب: صفحة تحميل تختفي بعد ٣ ثوانٍ، رأس وتنقل وبطل وتذييل.","Task 5: عناصر شبكة/قائمة، بطاقات فريق، روابط مشاركة، بطاقات نيومورفيزم، بطاقة منتج، وقائمة مهام."]},
+      lessons:{en:["Small exercises are useful when presented as practice scope, not as full products.","DOM tasks made the basics visible: selecting elements, filtering lists, timers, event handlers, and updating the page."],ar:["التمارين الصغيرة مفيدة عندما تُعرض كنطاق تدريب وليس كمنتجات كاملة.","مهام DOM وضحت الأساسيات: اختيار العناصر، فلترة القوائم، المؤقتات، معالجات الأحداث، وتحديث الصفحة."]},
+      preview:"training-real"
+    }
+  };
+
+  PROJECTS.forEach((project) => Object.assign(project, updates[project.id] || {}));
+
+  function section(key, html){ return html ? `<div class="ms-block"><h4>${t(key)}</h4>${html}</div>` : ""; }
+  function para(field){ return field ? `<p>${loc(field)}</p>` : ""; }
+  function sourceHtml(p){ return p.sourceFiles ? `<div class="source-trail">${p.sourceFiles.map(f=>`<code>${f}</code>`).join("")}</div>` : ""; }
+  function screensHtml(p){ return p.screens ? listHtml(loc(p.screens)) : ""; }
+
+  const tabNames = {
+    "muen-real":["Landing","Emergency","Services"],
+    "vital-real":["Landing","Patient","Waiting"],
+    "academia-real":["Landing","Scheduler","Dashboard"],
+    "ailearn-real":["Landing","Module","Quiz"],
+    "bug-real":["Form","Tickets"],
+    "movie-real":["Browse","Watchlist"],
+    "training-real":["Static","Video","Task 5"]
+  };
+
+  window.demoHtml = function(p){
+    if(!p.preview) return "";
+    const tabs = tabNames[p.preview] || ["Preview"];
+    return section("sec.realpreview", `
+      <div class="preview-tabs">${tabs.map((name,i)=>`<button class="preview-tab ${i===0?"active":""}" data-preview-tab="${i}">${name}</button>`).join("")}</div>
+      <div class="preview-frame">${renderPreview(p.preview)}</div>
+      <p class="demo-note">${loc({en:"Built from the original source files listed below. It is an isolated visual preview, not a fictional redesign.",ar:"مبنية من ملفات المصدر الأصلية المذكورة بالأسفل. هذه معاينة بصرية معزولة وليست إعادة تصميم خيالية."})}</p>
+    `);
+  };
+
+  function renderPreview(type){
+    if(type==="muen-real") return `
+      <div class="source-preview active"><div class="academia"><div class="acad-hero"><div class="ai-badge">Smart medical support platform</div><div class="acad-title">Healthcare support, faster and easier for everyone.</div><p>Mu'en connects patients with doctors, nurses, volunteers, emergency support, nearby hospitals, and online consultations through one clean responsive platform.</p><div class="case-meta"><span class="pc-tag">24/7 Emergency flow</span><span class="pc-tag">6+ Care services</span><span class="pc-tag">100% Responsive UI</span></div></div><div class="acad-grid"><div class="acad-card"><b>Emergency ready</b><p>Quick request flow with location and status updates.</p></div><div class="acad-card"><b>Human care</b><p>Doctors, nurses, volunteers, and patients connected clearly.</p></div><div class="acad-card"><b>One dashboard</b><p>Appointments, records, payments, and requests in one place.</p></div></div></div></div>
+      <div class="source-preview"><div class="phone-app"><div class="phone-main"><div style="text-align:center;margin-bottom:20px"><div class="service-ico" style="margin:auto;background:#fee2e2;color:#dc2626">!</div><h2>Emergency Request</h2><p>Share your location and send the request</p></div><div class="app-card"><label>Location</label><input class="bug-input" value="Live GPS ready" readonly><p style="font-size:12px;color:#64748b">Keep this screen open after sending so responders can follow your live GPS.</p><div class="app-card" style="background:#f8fafc;margin-top:12px">Preview your live map<br><small>This is the map responders will see after you send the request.</small></div><button class="pill-btn" style="width:100%;margin-top:14px">Send Emergency Help Request</button></div></div></div></div>
+      <div class="source-preview"><div class="phone-app"><div class="phone-main"><h2>Patient Services</h2>${["Request a Nurse","Volunteer Requests","My Appointments","Medicine Reminder","Nearby Hospitals","Health Records"].map((s,i)=>`<div class="service-row"><div class="service-ico">${i+1}</div><div><b>${s}</b><p>${["Book a home-care visit","Ask for volunteer help","See doctor responses","Set medication reminders","Find nearby hospitals","View and manage records"][i]}</p></div></div>`).join("")}</div></div></div>`;
+    if(type==="vital-real") return `
+      <div class="source-preview active"><div class="phone-app"><div class="phone-head"><div class="phone-logo"><span class="phone-logo-mark">+</span>مُعين</div><button class="outline-btn">sign in</button></div><div class="phone-main"><p style="text-align:center;color:#64748b">Connecting patients with doctors, nurses and volunteers for fast emergency medical help.</p><div class="role-grid">${["For Patients","For Doctors","For Nurses","For Volunteers"].map((r,i)=>`<div class="role-card"><h5>${r}</h5><p>${["Get immediate medical help","Respond to emergencies","Support doctors and care","Help your community"][i]}</p><ul><li>${["One-tap emergency HELP button","Receive emergency alerts","Provide follow-up care","Assist elderly or disabled users"][i]}</li></ul></div>`).join("")}</div><div style="text-align:center;margin-top:18px"><button class="pill-btn">sign up -></button> <button class="outline-btn">sign in</button></div></div></div></div>
+      <div class="source-preview"><div class="phone-app"><div class="phone-head"><div class="phone-logo"><span class="phone-logo-mark">+</span>مُعين</div><span>user</span></div><div class="phone-main"><h1>Hello, user</h1><p>How can we help you today?</p><button class="help-btn"><b style="font-size:26px">HELP!</b><br><span>Tap here for immediate emergency help</span></button><div class="service-row"><div class="service-ico">🤝</div><b>other services</b></div><div class="service-row"><div class="service-ico">U</div><b>My profile</b></div></div></div></div>
+      <div class="source-preview"><div class="phone-app"><div class="phone-main"><div class="status-card"><div style="font-size:38px">⏳</div><p>Request ID: #demo-c</p><span class="status-pill">PENDING</span></div><div class="app-card" style="margin-top:14px"><p><b>Patient</b><span style="float:right">USER</span></p><p><b>Type</b><span style="float:right">Emergency</span></p><p><b>Location</b><span style="float:right">Current GPS</span></p></div><div class="app-card" style="margin-top:14px"><b>Status Update:</b><p>We have alerted nearby medical professionals. Please stay on this screen.</p></div><button style="width:100%;background:#ef4444;color:white;border:0;border-radius:12px;padding:12px">Cancel x</button></div></div></div>`;
+    if(type==="academia-real") return `
+      <div class="source-preview active"><div class="academia"><div class="acad-hero"><div class="acad-title">Maximize Your Academic Success</div><p>Plan your courses, manage tasks, and collaborate with classmates.</p><button class="pill-btn">Get Started</button> <button class="outline-btn">Try Course Scheduler</button></div><div class="acad-grid">${["Smart Scheduling","Task Management","Study Groups","Course Materials","Time Analytics","And More"].map(x=>`<div class="acad-card"><b>${x}</b><p>${x==="Task Management"?"Stay on top of assignments, readings, and exams.":"Feature card from LandingPage.tsx."}</p></div>`).join("")}</div></div></div>
+      <div class="source-preview"><div class="academia"><h2>Course Scheduler</h2><p>Specify your available days and times, and we'll suggest optimized course schedules for you.</p><div class="app-card"><b>Set Your Preferences</b><div class="case-meta">${["Sunday","Tuesday","Thursday"].map(d=>`<span class="day-chip">${d}</span>`).join("")}</div><div class="course-row"><b>CS 101</b><span>Introduction to Computer Science</span><span>15 seats</span></div><div class="course-row"><b>MATH 241</b><span>Calculus III</span><span>23 seats</span></div><button class="pill-btn">Generate Schedules</button></div></div></div>
+      <div class="source-preview"><div class="academia"><div class="acad-grid">${["Introduction to Computer Science","Data Structures and Algorithms","Web Development with React","Mobile App Development with React Native"].map((c,i)=>`<div class="acad-card"><b>${c}</b><p>Instructor: ${["Dr. Smith","Prof. Johnson","Mr. Williams","Mrs. Davis"][i]}</p><div style="height:8px;background:#e5e7eb;border-radius:999px"><div style="height:8px;width:${[60,30,80,15][i]}%;background:#2563eb;border-radius:999px"></div></div></div>`).join("")}</div></div></div>`;
+    if(type==="ailearn-real") return `
+      <div class="source-preview active"><div class="ailearn"><div class="ai-hero"><div class="ai-badge">Now Live - 4 New AI Modules Added</div><div class="ai-title">Learn AI Basics<br><span>The Smart Way</span></div><p>An interactive platform that makes artificial intelligence simple, engaging, and genuinely fun.</p><div class="ai-form"><input placeholder="Your name to get started..."><button>Start Learning -></button></div></div></div></div>
+      <div class="source-preview"><div class="module-preview"><h2>AI Essentials</h2><p>Before diving into complex neural networks, we build your vocabulary with key AI concepts.</p><div class="module-grid">${["Algorithm","Data Set","Inference","Model"].map(x=>`<div class="module-card"><b>${x}</b><p>Glossary card from module.php</p></div>`).join("")}</div></div></div>
+      <div class="source-preview"><div class="module-preview"><h2>Module 2 Quiz</h2><p>What is the correct order of the ML pipeline stages?</p>${["Preprocessing -> Collection -> Training","Collection -> Preprocessing -> Training -> Evaluation -> Deployment","Training -> Collection -> Evaluation"].map((x,i)=>`<label class="module-card" style="display:block;margin:8px 0"><input type="radio" name="aiq"> ${x}</label>`).join("")}<button class="pill-btn">Submit Answers</button></div></div>`;
+    if(type==="bug-real") return `
+      <div class="source-preview active"><div class="bug-app"><div class="bug-box"><h1>Bug Blaster</h1><label>Title</label><input class="bug-input"><label>Description</label><textarea class="bug-input" style="min-height:100px"></textarea><fieldset class="priority-field"><legend>Priority</legend><label><input type="radio" checked> Low</label><label><input type="radio"> Medium</label><label><input type="radio"> High</label></fieldset><button class="blue-button">Submit</button></div></div></div>
+      <div class="source-preview"><div class="bug-app"><div class="bug-box"><h2>All Tickets</h2><select class="bug-input"><option>High to Low</option><option>Low to High</option></select><div class="ticket-item"><span class="priority-dot-real"></span><h3>Login form error</h3><p>Example ticket previewing the real TicketItem layout.</p><button class="blue-button">Delete</button><button class="blue-button">Edit</button></div></div></div></div>`;
+    if(type==="movie-real") return `
+      <div class="source-preview active"><div class="movie-app"><div style="text-align:center;font-size:28px;font-weight:800">MovieDux</div><div class="movie-nav"><span>Home</span><span>Watchlist</span></div><input class="movie-search" placeholder="Search movies..."><div class="case-meta"><span class="pc-tag">Genre: Fantasy</span><span class="pc-tag">Rating: Good</span></div><div class="movie-grid">${["Dark Storm","Whisper of Fate","Lost in Shadows"].map((m,i)=>`<div class="movie-card-real"><div class="movie-poster">images/${i+1}.jpg</div><div class="movie-info"><b>${m}</b><div><span>${["drama","fantasy","action"][i]}</span><span class="movie-rating">${["8.3","7.7","9.3"][i]}</span></div><span class="watch-switch">Add to Watchlist</span></div></div>`).join("")}</div></div></div>
+      <div class="source-preview"><div class="movie-app"><h2 style="text-align:center">Your Watchlist</h2><div class="movie-grid"><div class="movie-card-real"><div class="movie-poster">images/4.jpg</div><div class="movie-info"><b>Lost in Shadows</b><div><span>action</span><span class="movie-rating">9.3</span></div><span class="watch-switch on">In Watchlist</span></div></div></div></div></div>`;
+    if(type==="training-real") return `
+      <div class="source-preview active"><div class="training-preview"><div class="training-header"><h2>My First Website</h2><div class="training-nav"><span>Home</span><span>About</span><span>Contact</span></div></div><div class="training-card"><h2>Welcome!</h2><p>This is a simple website project using HTML and CSS.</p><button class="blue-button" style="background:#222">Learn More</button></div><div class="training-header">My First Website</div></div></div>
+      <div class="source-preview"><div class="training-preview"><div class="training-header"><h2>Video Gallery</h2></div><div class="training-card"><input class="bug-input" placeholder="Search videos by title..."><div class="video-grid-mini">${[1,2,3,4].map(n=>`<div class="video-card-mini"><div class="video-thumb">Source/1.mp4</div><div style="padding:10px"><b>${n}</b><br><small>MP4</small></div></div>`).join("")}</div></div></div></div>
+      <div class="source-preview"><div class="training-preview"><div class="training-header"><h2>Task 5</h2><div class="training-nav"><span>Views</span><span>Team</span><span>Share</span><span>To-do</span></div></div><div class="training-card"><h2>Grid and List View</h2><button class="blue-button">Grid</button><button class="blue-button">List</button><div class="acad-grid"><div class="acad-card">Web Design</div><div class="acad-card">Mobile App</div><div class="acad-card">Dashboard</div><div class="acad-card">Online Store</div></div></div></div></div>`;
+    return "";
+  }
+
+  window.wireDemo = function(p){
+    document.querySelectorAll(".preview-tab").forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const index = Number(tab.dataset.previewTab);
+        document.querySelectorAll(".preview-tab").forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
+        document.querySelectorAll(".source-preview").forEach((view, i) => view.classList.toggle("active", i === index));
+      });
+    });
+  };
+
+  window.openModal = function(id){
+    const p = PROJECTS.find(x=>x.id===id);
+    if(!p) return;
+    state.openId = id;
+    document.getElementById("modalCat").textContent = loc(p.type);
+    document.querySelector(".modal-head").style.setProperty("--cat-color", p.catColor);
+    document.querySelector(".modal-panel").style.setProperty("--cat-color", p.catColor);
+    const body = document.getElementById("modalBody");
+    body.innerHTML = `
+      <div class="case-hero" style="--cat-color:${p.catColor}">
+        <h2>${loc({en:p.title,ar:p.title_ar})}</h2>
+        <p class="modal-sub">${loc(p.oneLiner)}</p>
+        <div class="status-line"><span>${t("type.label")}: <b>${loc(p.type)}</b></span><span>${t("status.label")}: <b>${loc(p.status)}</b></span></div>
+      </div>
+      ${demoHtml(p)}
+      ${section("sec.what", para(p.overview))}
+      ${p.arabic ? `<div class="ms-block ar-block"><h4>${t("sec.arabic")}</h4><p>${p.arabic}</p></div>` : ""}
+      ${section("sec.problem", para(p.problem))}
+      ${section("sec.solution", para(p.solution))}
+      ${section("sec.features", p.features ? listHtml(loc(p.features)) : "")}
+      ${section("sec.how", para(p.howWorks))}
+      ${section("sec.mywork", para(p.myWork))}
+      ${section("sec.stack", p.stack ? stackGroupsHtml(p) : "")}
+      ${section("sec.architecture", p.architecture ? listHtml(loc(p.architecture)) : "")}
+      ${section("sec.highlights", p.highlights ? listHtml(loc(p.highlights)) : "")}
+      ${section("sec.screens", screensHtml(p))}
+      ${section("sec.lessons", p.lessons ? listHtml(loc(p.lessons)) : "")}
+      ${codeHtml(p)}
+    `;
+    document.getElementById("modalOverlay").classList.add("open");
+    document.body.style.overflow = "hidden";
+    wireDemo(p);
+    const copyBtn = body.querySelector(".code-copy");
+    if(copyBtn){
+      copyBtn.addEventListener("click", ()=>{
+        const codeEl = document.getElementById(`codeblock-${p.id}`);
+        const text = codeEl ? codeEl.textContent : "";
+        navigator.clipboard?.writeText(text).then(()=>{ copyBtn.textContent = t("copied"); setTimeout(()=>{ copyBtn.textContent = t("copy"); }, 1500); }).catch(()=>{});
+      });
+    }
+  };
+})();
+</script>
+</body>
+</html>
